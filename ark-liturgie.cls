@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/10/02 v0.6 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/10/05 v0.7 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -59,11 +59,8 @@
 
 % / Frei predigen
 
-\RequirePackage{csquotes}
-
 %\RequirePackage{sectsty}
 \RequirePackage{xcolor}
-
 \RequirePackage{soul}
 \RequirePackage{verbatim}
 \RequirePackage{setspace}
@@ -73,7 +70,6 @@
 %\RequirePackage{parskip}
 \RequirePackage{subfiles}
 \RequirePackage{microtype}
-\RequirePackage{hyperref}
 \RequirePackage{multicol}
 \RequirePackage{etoolbox}
 %\RequirePackage{gregoriosyms}
@@ -821,5 +817,7 @@ Amen.
 \newcommand*{\Wochenspruch}{\footnotesize{Wochenspruch aus \@wochenspruchStelle:}\\ \normalsize\textit{\glqq\@wochenspruch\grqq}}
 
 \setcounter{tocdepth}{2}
+
+\RequirePackage{hyperref}
 
 \endinput % Das ist das Ende von liturgie.cls
