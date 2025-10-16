@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/10/16 v0.8 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/10/16 v0.9 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -28,7 +28,10 @@
 
 \ProcessOptions\relax
 
-\LoadClass[notitlepage,bibliography=totoc,parskip=full,fontsize=10pt,a4paper,DIV=18,dvipsnames,onehalfspacing,hidelinks]{scrartcl}
+\preto\@classoptionslist{ngerman,notitlepage,bibliography=totoc,parskip=full,fontsize=10pt,a4paper,DIV=18,dvipsnames,onehalfspacing,hidelinks}
+\preto\@raw@classoptionslist{ngerman,notitlepage,bibliography=totoc,parskip=full,fontsize=10pt,a4paper,DIV=18,dvipsnames,onehalfspacing,hidelinks}
+
+\LoadClass{scrartcl}
 
 \def\STOPPFEHLER#1#2{
     \ClassError{#1}{#2}
