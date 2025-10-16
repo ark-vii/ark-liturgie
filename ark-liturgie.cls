@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/10/16 v0.9 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/10/16 v0.9.1 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -28,6 +28,7 @@
 
 \ProcessOptions\relax
 
+\RequirePackage{etoolbox}
 \preto\@classoptionslist{ngerman,notitlepage,bibliography=totoc,parskip=full,fontsize=10pt,a4paper,DIV=18,dvipsnames,onehalfspacing,hidelinks}
 \preto\@raw@classoptionslist{ngerman,notitlepage,bibliography=totoc,parskip=full,fontsize=10pt,a4paper,DIV=18,dvipsnames,onehalfspacing,hidelinks}
 
