@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/10/05 v0.7 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/10/16 v0.8 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -667,8 +667,8 @@ Amen.
 
 \newcommand\Totenglocke{\stk{Läuten der Totenglocke}{}}
 
-\newcommand\gabenbereitung{\stkNull{Gabenbereitung}{}}
-\newcommand\praefation{\stkNull{Präfationsdialog}{}\stkNull{Präfation}{}}
+\newcommand\gabenbereitung{\stkNull{Gabenbereitung/Offertorium}{}}
+\newcommand\praefation{\stkNull{Präfationsdialog und Präfation}{}}
 \newcommand\epiklese{\stkNull{Epiklese}{}}
 \newcommand\anamnese{\stkNull{Anamnese}{}}
 
