@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/10/16 v0.10 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/10/18 v0.11 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -291,14 +291,12 @@
     %\KOMAoptions{paper=A5}
     \KOMAoptions{fontsize=14pt}
     %\recalctypearea
-    \textit{\@autor}\par\part*{\textcolor{\@farbe!80}\@ltitel}
+    \noindent\textit{\@autor}\par\part*{\textcolor{\@farbe!80}\@ltitel}
     \par\textit{Predigt über \@predigttext\ (\@lesejahr)\\\@gdatum, \@feiertag}\vspace{0.75em}\hrule\hrule\vspace{1.75em}
     %\newpage
     \begin{addmargin}[0cm]{2.5cm}
     \large
-    \Priest{Gnade sei mit \mbox{euch /} und Friede von Gott, unserm \mbox{Vater, /} und dem Herrn Jesus Christus.}
-    \par
-    \Korr{Amen.} % Kanzelgruß
+    \Priest{Gnade sei mit \mbox{euch /} und Friede von Gott, unserm \mbox{Vater, /} und dem Herrn Jesus Christus.}\hfill \Korr{Amen.} % Kanzelgruß
     \par
     \rubrik{\Opt{Gebet vor der Predigt}}
     \vspace{\parskip}
