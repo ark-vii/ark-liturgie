@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/10/18 v0.11 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/10/28 v0.12 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -235,6 +235,7 @@
         %\begin{multicols}{2}
         \noindent\@anmerkungen
         %\end{multicols}
+        
         \vfill
     }
     
@@ -581,6 +582,7 @@
 \newcommand\Auszug{\stk{Auszug}{}}
 
 \newcommand\Confiteor{\stk{Confiteor}{}}
+\newcommand\SConfiteor{\stk{Salutatio, Confiteor}{}}
 \newcommand\AKG[1]{\stk{Fürbitten}{(#1)}}
 \newcommand\AKGmitLied[2]{\stk{Fürbitten}{(#1) mit #2}\zulieder{\textit{Füb.} #2}}
 
