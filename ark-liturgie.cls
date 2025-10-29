@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/10/29 v0.13 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/10/29 v0.14 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -528,7 +528,7 @@
 \newcommand\Geschieht{\rubrik{Geschieht.}}
 
 % Befehle
-\newcommand\Beginn{\stk{Sakristeigebet, Glockenläuten, Präludium}{}}
+\newcommand\Beginn{\stk{Sakristeigebet, Läuten, Präludium}{}}
 \newcommand\Einzug[1]{\stk{Einzug #1}{}}
 \newcommand\Votum{\stk{Trinitarisches Votum}{}}
 \newcommand\Begruessung{\Ansprache{Begrüßung}\begin{displayquote}\Large\Wochenspruch\end{displayquote}}
