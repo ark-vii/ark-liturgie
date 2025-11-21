@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/11/21 v0.16 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/11/21 v0.17 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -185,7 +185,7 @@
         
     \newpage
     
-    {\noindent\large\bfseries\color{\@farbe!80} Liturgische Anweisungen\par\noindent\color{black}\Large\@art\par\noindent\large\@feiertag\ am \@gdatum, \@ort}
+    {\noindent\large\bfseries\noindent\color{black}\Large\@art\par\noindent\large\@feiertag\ am \@gdatum, \@ort\par\noindent\large\bfseries\color{\@farbe!80} Liturgische Anweisungen}
     
     \colorlet{Kopf}{white} % blau
     \colorlet{Herz}{white} % rot
