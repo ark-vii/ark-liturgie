@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/11/21 v0.18 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/11/22 v0.19 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -84,6 +84,7 @@
 \RequirePackage[normalem]{ulem} % use normalem to protect \emph
 \RequirePackage[none]{hyphenat}
 \RequirePackage{tabularray}
+\RequirePackage{csquotes}
 
 %% Bibelstellen
 \RequirePackage[kurz]{bibleref-german}
@@ -185,7 +186,7 @@
         
     \newpage
     
-    {\noindent\large\bfseries\noindent\color{black}\Large\@art\par\noindent\large\@feiertag\ am \@gdatum, \@ort\par\noindent\large\bfseries\color{\@farbe!80} Liturgische Anweisungen}
+    {\noindent\large\bfseries\noindent\color{black}\Large\@art\\\noindent\large\@feiertag\ am \@gdatum, \@ort\\\noindent\large\bfseries\color{\@farbe!80} Liturgische Anweisungen}
     
     \colorlet{Kopf}{white} % blau
     \colorlet{Herz}{white} % rot
@@ -194,7 +195,7 @@
 }
 
 \def\Ablauf{\newpage
-    {\noindent\bfseries\Large\@art: \@ltitel\par\noindent\large\@feiertag\ am \@gdatum, \@ort\par\noindent\large\bfseries\color{\@farbe!80} Liturgischer Ablauf}
+    {\noindent\bfseries\Large\@art: \@ltitel\\\noindent\large\@feiertag\ am \@gdatum, \@ort\\\noindent\large\bfseries\color{\@farbe!80} Liturgischer Ablauf}
     \Border{\@farbe}{white}{0.5cm}
     \begin{multicols}{2}
     \tableofcontents\thispagestyle{empty}
@@ -296,15 +297,14 @@
     \Priest{Gnade sei mit \mbox{euch /} und Friede von Gott, unserm \mbox{Vater, /} und dem Herrn Jesus Christus.}\hfill \Korr{Amen.} % Kanzelgruß
     \par
     \rubrik{\Opt{Gebet vor der Predigt}}
-    \vspace{\parskip}
-    \par%\Huge
+    \vspace{0.5cm}
     \setstretch{1.5}
 } % vorher
 {
     \setstretch{1}
-    \par
-    \Kanzelsegen % Kanzelsegen
-    \rubrik{\Opt{Gebet nach der Predigt}}
+    \vspace{0.5cm}
+    \par\Kanzelsegen % Kanzelsegen
+    \par\rubrik{\Opt{Gebet nach der Predigt}}
     %\begin{center}Amen.\end{center}
     \end{addmargin}
     %\KOMAoptions{paper=A4}
