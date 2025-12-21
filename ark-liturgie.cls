@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/12/21 v0.21 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/12/21 v0.21.1 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -186,7 +186,7 @@
 }
 
 \def\Ablauf{\newpage
-    {\noindent\bfseries\Large\@art: \@ltitel\\\noindent\large\@feiertag\ am \@gdatum, \@ort\\\noindent\large\bfseries\color{\@farbe!80} Liturgischer Ablauf}
+    {\noindent\bfseries\Large\@art: \@ltitel\\\noindent\large\@feiertag\ am \@gdatum, \@ort\vfill\noindent\large\bfseries\color{\@farbe!80} Liturgischer Ablauf}
     \Border{\@farbe}{white}{0.5cm}
     \begin{multicols}{2}
     \tableofcontents\thispagestyle{empty}
