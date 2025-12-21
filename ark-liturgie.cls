@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/12/21 v0.24 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/12/21 v0.25 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -749,7 +749,7 @@ Amen.
     \ifthenelse{\equal{#2}{}}{%
         \zutexte{#3}
     }{%
-        \zutexte{\textit{#2.}\ #3}
+        \zutexte{\textit{\color{\@farbe!80} #2.}\ #3}
     }
 }
 \newcommand\Lesung[1]{\Text{Lesung:}{}{#1}}
