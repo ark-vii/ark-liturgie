@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/12/21 v0.26 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/12/21 v0.27 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -417,6 +417,7 @@
 }
 
 \newenvironment{EpistelU}[1]{ % vorher
+    \def\EpistelU@ref{#1}
     \Needspace{7\baselineskip}
     \Epistel{#1}
     %
@@ -426,11 +427,13 @@
 }{ % danach
     %\hfill {\normalsize \@predigttext}
     %\end{displayquote}
+    \par\null\hfill \mbox{\normalsize \EpistelU@ref}
     \end{multicols}
     %\Needspace{7\baselineskip}
 }
 
 \newenvironment{ATU}[1]{ % vorher
+    \def\ATU@ref{#1}
     \Needspace{7\baselineskip}
     \AltesTestament{#1}
     %
@@ -440,10 +443,12 @@
 }{ % danach
     %\hfill {\normalsize \@predigttext}
     %\end{displayquote}
+    \par\null\hfill \mbox{\normalsize \ATU@ref}
     \end{multicols}
 }
 
 \newenvironment{LesungU}[1]{ % vorher
+    \def\LesungU@ref{#1}
     \Needspace{7\baselineskip}
     \Lesung{#1}
     %
@@ -453,6 +458,7 @@
 }{ % danach
     %\hfill {\normalsize \@predigttext}
     %\end{displayquote}
+    \par\null\hfill \mbox{\normalsize \LesungU@ref}
     \end{multicols}
 }
 
