@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/12/21 v0.23 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/12/21 v0.24 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -177,7 +177,7 @@
         
     \newpage
     
-    {\noindent\large\bfseries\noindent\color{black}\Large\@art\\\noindent\large\@feiertag\ am \@gdatum, \@ort\\\noindent\large\bfseries\color{\@farbe!80} Liturgische Anweisungen}
+    {\noindent\large\bfseries\noindent\color{black}\Large\@art\\\noindent\large\@feiertag\ am \@gdatum, \@ort\par\noindent\large\bfseries\color{\@farbe!80} Liturgische Anweisungen}
     
     \colorlet{Kopf}{white} % blau
     \colorlet{Herz}{white} % rot
@@ -322,12 +322,15 @@
 }
 
 \newenvironment{predigttextu}{ % vorher
+    \Needspace{10\baselineskip}
     \subsubsection*{Lesung des Predigttextes: \@predigttext}
-    \begin{displayquote}
+    \begin{multicols}{2}
+    %\begin{displayquote}
     %\LARGE
 }{ % danach
-    \hfill \mbox{\normalsize \@predigttext}
-    \end{displayquote}
+    \par\null\hfill \mbox{\normalsize \@predigttext}
+    %\end{displayquote}
+    \end{multicols}
 }
 
 \newenvironment{Kollekteu}{ % vorher
@@ -352,65 +355,65 @@
     \Needspace{7\baselineskip}
     \AKG{#1}
     \begin{multicols}{2}
-    \begin{displayquote}
+    %\begin{displayquote}
     \large
 }{ % danach
-    \end{displayquote}
-    \end{multicols}{2}
+    %\end{displayquote}
+    \end{multicols}
 }
 
 \newenvironment{Dankgebetu}[1]{ % vorher
     \Needspace{7\baselineskip}
     \Dankgebet{#1}
-    \begin{displayquote}
+    %\begin{displayquote}
     \large
 }{ % danach
-    \end{displayquote}
+    %\end{displayquote}
 }
 
 \newenvironment{DankgebetFBu}[1]{ % vorher
     \Needspace{7\baselineskip}
     \DankgebetFB{#1}
     \begin{multicols}{2}
-    \begin{displayquote}
+    %\begin{displayquote}
     \large
 }{ % danach
-    \end{displayquote}
-    \end{multicols}{2}
+    %\end{displayquote}
+    \end{multicols}
 }
 
 \newenvironment{Gebetu}[1]{ % vorher
     \Needspace{7\baselineskip}
     \stk{#1}{}
     \begin{multicols}{2}
-    \begin{displayquote}
+    %\begin{displayquote}
     \large
 }{ % danach
-    \end{displayquote}
-    \end{multicols}{2}
+    %\end{displayquote}
+    \end{multicols}
 }
 
 \newenvironment{GebetPu}[1]{ % vorher
     \Needspace{7\baselineskip}
     \paragraph{#1}
     \begin{multicols}{2}
-    \begin{displayquote}
+    %\begin{displayquote}
     \large
 }{ % danach
-    \end{displayquote}
-    \end{multicols}{2}
+    %\end{displayquote}
+    \end{multicols}
 }
 
 \newenvironment{AKGmitLiedu}{ % vorher
     \Needspace{7\baselineskip}
     \AKGmitLied
     \begin{multicols}{2}
-    \begin{displayquote}
+    %\begin{displayquote}
     \large
 }
 { % danach
-    \end{displayquote}
-    \end{multicols}{2}
+    %\end{displayquote}
+    \end{multicols}
 }
 
 \newenvironment{EpistelU}[1]{ % vorher
@@ -418,11 +421,11 @@
     \Epistel{#1}
     %
     \begin{multicols}{2}
-    \begin{displayquote}
+    %\begin{displayquote}
     \large
 }{ % danach
     %\hfill {\normalsize \@predigttext}
-    \end{displayquote}
+    %\end{displayquote}
     \end{multicols}
     %\Needspace{7\baselineskip}
 }
@@ -432,11 +435,11 @@
     \AltesTestament{#1}
     %
     \begin{multicols}{2}
-    \begin{displayquote}
+    %\begin{displayquote}
     \large
 }{ % danach
     %\hfill {\normalsize \@predigttext}
-    \end{displayquote}
+    %\end{displayquote}
     \end{multicols}
 }
 
@@ -445,23 +448,23 @@
     \Lesung{#1}
     %
     \begin{multicols}{2}
-    \begin{displayquote}
+    %\begin{displayquote}
     \large
 }{ % danach
     %\hfill {\normalsize \@predigttext}
-    \end{displayquote}
+    %\end{displayquote}
     \end{multicols}
 }
 
 \newenvironment{predigtschlussgebet}{ % vorher
     \Needspace{5\baselineskip}
     \subsubsection*{Predigtschlußgebet}
-    \begin{displayquote}
+    %\begin{displayquote}
     \LARGE
     \Priest{}
 }{ % danach
     \Korr{Amen.}
-    \end{displayquote}
+    %\end{displayquote}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -729,7 +732,7 @@ Amen.
         \ifthenelse{\equal{#2}{}}{%
             \zulieder{#3}
         }{
-            \zulieder{\textit{#2.}\ #3}
+            \zulieder{\textit{\color{\@farbe!80} #2.}\ #3}
         }
     }   
 }
