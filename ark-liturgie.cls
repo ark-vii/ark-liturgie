@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/12/21 v0.21.1 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/12/21 v0.22 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -747,7 +747,8 @@ Amen.
 }
 
 \newcommand\PredigtInline{
-    \stk{Predigt über \@predigttext}{}
+    %\stk{Predigt über \@predigttext}{}
+    \addcontentsline{toc}{subsection}{Predigt über \@predigttext}
 }
 
 %\ifthenelse{\equal{ARGUMENT1}{VERGLEICH}}{WAHR}{FALSCH}
