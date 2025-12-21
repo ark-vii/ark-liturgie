@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/12/21 v0.25 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/12/21 v0.26 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -207,7 +207,7 @@
     \vfill
     
     {\noindent\large\bfseries\color{\@farbe!80} Auszug: \normalfont\ \textit{Texte} für liturgische:n Lektor:in (Lesung)}
-    \begin{multicols}{3}
+    \begin{multicols}{4}
         \ifthenelse{\equal{\texte}{}}{\textit{Keine. Oder?}}{
             \begin{enumerate}
                 \let\do\item
