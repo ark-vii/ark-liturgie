@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/12/21 v0.20 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/12/21 v0.21 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -75,7 +75,6 @@
 \RequirePackage{subfiles}
 \RequirePackage{microtype}
 \RequirePackage{multicol}
-\RequirePackage{etoolbox}
 %\RequirePackage{gregoriosyms}
 \RequirePackage{ifthenx}
 \RequirePackage{tocloft}
@@ -85,6 +84,11 @@
 \RequirePackage[none]{hyphenat}
 \RequirePackage{tabularray}
 \RequirePackage[autostyle=true,german=quotes]{csquotes}
+\RequirePackage{needspace}
+
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=1pt, parsep=0pt, topsep=3pt, label=\arabic*.}
+\setlist[itemize]{itemsep=1pt, parsep=0pt, topsep=3pt, label=\textbullet}
 
 %% Bibelstellen
 \RequirePackage[kurz]{bibleref-german}
@@ -97,19 +101,6 @@
 
 %% Sprache
 \sloppy
-
-%% Listen
-%\RequirePackage{etoolbox}
-
-\def\lieder{}
-\def\zulieder#1{%
-    \listadd\lieder{#1}
-}
-
-\def\texte{}
-\def\zutexte#1{%
-    \listadd\texte{#1}
-}
 
 %% Farben
 \RequirePackage{xcolor,tikz}
@@ -203,7 +194,7 @@
     
     \vfill
     
-    {\noindent\large\bfseries\color{\@farbe!80} Liedertafel\normalfont\ für \@musik}
+    {\noindent\large\bfseries\color{\@farbe!80} Liedertafel}
     \begin{multicols}{3}
         \ifthenelse{\equal{\lieder}{}}{\textit{Keine. Oder?}}{
             \begin{enumerate}
@@ -334,7 +325,6 @@
 }
 
 \newenvironment{predigttextu}{ % vorher
-    %\filbreak
     \subsubsection*{Lesung des Predigttextes: \@predigttext}
     \begin{displayquote}
     %\LARGE
@@ -344,7 +334,7 @@
 }
 
 \newenvironment{Kollekteu}{ % vorher
-    \filbreak
+    \Needspace{7\baselineskip}
     \Kollekte
     \begin{displayquote}
     \Large
@@ -353,7 +343,7 @@
 }
 
 \newenvironment{Begruessungu}{ % vorher
-    \filbreak
+    \Needspace{7\baselineskip}
     \Begruessung
     \begin{displayquote}
     \Large
@@ -362,6 +352,7 @@
 }
 
 \newenvironment{AKGu}[1]{ % vorher
+    \Needspace{7\baselineskip}
     \AKG{#1}
     \begin{displayquote}
     \Large
@@ -371,6 +362,7 @@
 }
 
 \newenvironment{Dankgebetu}[1]{ % vorher
+    \Needspace{7\baselineskip}
     \Dankgebet{#1}
     \begin{displayquote}
     \Large
@@ -379,6 +371,7 @@
 }
 
 \newenvironment{DankgebetFBu}[1]{ % vorher
+    \Needspace{7\baselineskip}
     \DankgebetFB{#1}
     \begin{displayquote}
     \Large
@@ -387,6 +380,7 @@
 }
 
 \newenvironment{Gebetu}[1]{ % vorher
+    \Needspace{7\baselineskip}
     \stk{#1}{}
     \begin{displayquote}
     \Large
@@ -395,6 +389,7 @@
 }
 
 \newenvironment{GebetPu}[1]{ % vorher
+    \Needspace{7\baselineskip}
     \paragraph{#1}
     \begin{displayquote}
     \Large
@@ -403,7 +398,7 @@
 }
 
 \newenvironment{AKGmitLiedu}{ % vorher
-    \filbreak
+    \Needspace{7\baselineskip}
     \AKGmitLied
     \begin{displayquote}
     \Large
@@ -413,33 +408,47 @@
 }
 
 \newenvironment{EpistelU}[1]{ % vorher
-    %\filbreak
+    \Needspace{7\baselineskip}
     \Epistel{#1}
-    %\begin{multicols}{2}
+    %
+    \begin{multicols}{2}
     \begin{displayquote}
     \large
 }{ % danach
     %\hfill {\normalsize \@predigttext}
     \end{displayquote}
-    %\end{multicols}
-    %\filbreak
+    \end{multicols}
+    %\Needspace{7\baselineskip}
+}
+
+\newenvironment{ATU}[1]{ % vorher
+    \Needspace{7\baselineskip}
+    \AltesTestament{#1}
+    %
+    \begin{multicols}{2}
+    \begin{displayquote}
+    \large
+}{ % danach
+    %\hfill {\normalsize \@predigttext}
+    \end{displayquote}
+    \end{multicols}
 }
 
 \newenvironment{LesungU}[1]{ % vorher
-    %\filbreak
+    \Needspace{7\baselineskip}
     \Lesung{#1}
-    %\begin{multicols}{2}
+    %
+    \begin{multicols}{2}
     \begin{displayquote}
     \large
 }{ % danach
     %\hfill {\normalsize \@predigttext}
     \end{displayquote}
-    %\end{multicols}
-    %\filbreak
+    \end{multicols}
 }
 
 \newenvironment{predigtschlussgebet}{ % vorher
-    %\filbreak
+    \Needspace{5\baselineskip}
     \subsubsection*{Predigtschlußgebet}
     \begin{displayquote}
     \LARGE
@@ -501,12 +510,12 @@
 \newcommand\Salutatio{\stk{Salutatio}{}}
 \let\Gruss\Salutatio
 
-\newcommand\Eingangslied[1]{\Lied{Eingangslied}{EL}{#1}}
+\newcommand\Eingangslied[1]{\Lied{Eingangslied:}{EL}{#1}}
 \newcommand\entfaltetesKyrie[1]{\Lied{Entfaltetes Kyriegebet mit #1}{EKy}{#1}}
-\newcommand\Kyrie[1]{\Lied{Kyrie}{Ky}{#1}}
+\newcommand\Kyrie[1]{\Lied{Kyrie:}{Ky}{#1}}
 \newcommand\Halleluja[1]{
     \if@keinebusszeit
-        \Lied{Halleluja}{Hall}{#1}
+        \Lied{Halleluja:}{Hall}{#1}
         \renewcommand\Halleluja[1]{
             \stk{Halleluja}{#1}
         }
@@ -516,22 +525,22 @@
 }
 \newcommand\HallelujaVers[1]{
     \if@keinebusszeit
-        \Lied{Hallelujavers}{HallV}{#1}
+        \Lied{Hallelujavers:}{HallV}{#1}
     \else
         \STOPPFEHLER{ark-liturgie}{Kein Halleluja in Bußzeiten.}
     \fi
 }
-\newcommand\Gloria[1]{\if@keinebusszeit\Lied{Gloria}{Glo}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Gloria in Bußzeiten.}\fi}
-\newcommand\Glorialied[1]{\if@keinebusszeit\Lied{Glorialied}{GloL}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Gloria in Bußzeiten.}\fi}
-\newcommand\Beichtlied[1]{\if@beichte\Lied{Beichtlied}{BL}{#1}\fi}
+\newcommand\Gloria[1]{\if@keinebusszeit\Lied{Gloria:}{Glo}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Gloria in Bußzeiten.}\fi}
+\newcommand\Glorialied[1]{\if@keinebusszeit\Lied{Glorialied:}{GloL}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Gloria in Bußzeiten.}\fi}
+\newcommand\Beichtlied[1]{\if@beichte\Lied{Beichtlied:}{BL}{#1}\fi}
 \newcommand\Beichthandlung{\stk{Beichthandlung}{}}
 \newcommand\AbendmahlLied[1]{\if@abendmahl\Lied{Lied zum Abendmahl}{Abm}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Abendmahl in Dokumentenklasse.}\fi}
-\newcommand\Liedvers[1]{\Lied{Liedvers}{LV}{#1}}
-\newcommand\Wochenlied[1]{\Lied{Wochnlied}{WL}{#1}}
-\newcommand\Hauptlied[1]{\Lied{Hauptlied}{HL}{#1}}
-\newcommand\Predigtlied[1]{\Lied{Predigtlied}{PL}{#1}}
-\newcommand\Schlusslied[1]{\Lied{Schlusslied}{SL}{#1}}
-\newcommand\GloriaInExcelsis[1]{\Lied{Gloria in Excelsis}{GiE}{#1}}
+\newcommand\Liedvers[1]{\Lied{Liedvers:}{LV}{#1}}
+\newcommand\Wochenlied[1]{\Lied{Wochnlied:}{WL}{#1}}
+\newcommand\Hauptlied[1]{\Lied{Hauptlied:}{HL}{#1}}
+\newcommand\Predigtlied[1]{\Lied{Predigtlied:}{PL}{#1}}
+\newcommand\Schlusslied[1]{\Lied{Schlusslied:}{SL}{#1}}
+\newcommand\GloriaInExcelsis[1]{\Lied{Gloria in Excelsis:}{GiE}{#1}}
 
 \newcommand\Beichtgebet[1]{\if@beichte\Lied{Beichtgebet/Sündenbekenntnis}{SB}{#1}\fi}
 \let\Suendenbekenntnis\Beichtgebet
@@ -556,11 +565,11 @@
 
 \newcommand\DankgebetFB[1]{\stkNull{Schlußversikel}{}\stk{Dankgebet mit Fürbitten (#1)}{}}
 
-\newcommand\Introitus[1]{\Lied{Introitus}{Int}{#1}}
-\newcommand\Psalm[1]{\Lied{Psalmgebet}{Ps}{#1}}
-\newcommand\Epistel[1]{\Text{Epistel}{Ep}{#1}}
-\newcommand\AltesTestament[1]{\Text{Altes Testament}{AT}{#1}}
-\newcommand\Evangelium[1]{\Text{Evangelium}{Ev}{#1}}
+\newcommand\Introitus[1]{\Lied{Introitus:}{Int}{#1}}
+\newcommand\Psalm[1]{\Lied{Psalmgebet:}{Ps}{#1}}
+\newcommand\Epistel[1]{\Text{Epistel:}{Ep}{#1}}
+\newcommand\AltesTestament[1]{\Text{Altes Testament:}{AT}{#1}}
+\newcommand\Evangelium[1]{\Text{Evangelium:}{Ev}{#1}}
 
 \newcommand\Credo[1]{\if@ausfuehrlich\begin{Gebetu}{Credo #1}
 \ifthenelse{\equal{#1}{Nicaenum}}{
@@ -642,8 +651,7 @@ Amen.
 \newcommand\epiklese{\stkNull{Epiklese}{}}
 \newcommand\anamnese{\stkNull{Anamnese}{}}
 
-\newcommand\Vaterunser[1]{\filbreak
-\if@ausfuehrlich\begin{Gebetu}{Vaterunser #1}
+\newcommand\Vaterunser[1]{\if@ausfuehrlich\begin{Gebetu}{\ifthenelse{\equal{#1}{}}{Vaterunser}{Vaterunser: #1}}
 Vater unser im Himmel.\newline
 Geheiligt werde dein Name.\newline
 Dein Reich komme.\newline
@@ -659,8 +667,7 @@ in Ewigkeit.\newline
 Amen.
 \end{Gebetu}
 \else
-\stk{Vaterunser #1}{}
-\ifthenelse{\equal{#1}{}}{}{\zulieder{\textit{VU.} #1}}
+\ifthenelse{\equal{#1}{}}{\stk{Vaterunser}{}}{\stk{Vaterunser: #1}{}\zulieder{\textit{VU.} #1}}
 \fi}
 \let\VaterunserAbm\Vaterunser
 
@@ -686,28 +693,53 @@ Amen.
 \newcommand\Eingangsgebet{\stk{Eingangsgebet}{}}
 
 % stk
-\newcommand\stkNull[2]{\subsection*{#1\ #2\hfill\hyperref[ablauf]{\normalfont\footnotesize\itshape [Ablauf]}}}
-\newcommand\stk[2]{
+\newcommand\stkNull[2]{\filbreak\subsection*{#1\ #2\hfill\hyperref[ablauf]{\normalfont\footnotesize\itshape [Ablauf]}}}
+\newcommand\stk[2]{ %
     \stkNull{#1}{#2}
     \addcontentsline{toc}{subsection}{#1\ #2}
+}
+
+% Lied
+\newcommand\Lied[3]{ %
+    \ifthenelse{\equal{#3}{}}{%
+        \stk{#1}{}
+    }{%
+        \stk{#1}{#3}
+        \ifthenelse{\equal{#2}{}}{%
+            \zulieder{#3}
+        }{
+            \zulieder{\textit{#2.}\ #3}
+        }
+    }   
+}
+\newcommand\GBLied[1]{\Lied{Lied:}{}{#1}}
+%% Liste
+\def\lieder{}
+\def\zulieder#1{%
+    \global\listadd{\lieder}{#1}
+}
+
+% Text
+\newcommand\Text[3]{%
+    \stk{#1}{#3}
+    \ifthenelse{\equal{#2}{}}{%
+        \zutexte{#3}
+    }{%
+        \zutexte{\textit{#2.}\ #3}
+    }
+}
+\newcommand\Lesung[1]{\Text{Lesung:}{}{#1}}
+% Liste
+\def\texte{}
+\def\zutexte#1{%
+    \global\listadd{\texte}{#1}
 }
 
 \newcommand\Ansprache[1]{\stk{Ansprache:}{#1}}
 \newcommand\Handlung[1]{\stk{#1}{}}
 \newcommand\Gebet[1]{\stk{Gebet:}{#1}}
 \newcommand\Gesang[1]{\stk{Gesang:}{#1}}
-\newcommand\Lesung[1]{\stk{Lesung:}{#1}}
 \newcommand\Hymnus[1]{\stk{Hymnus:}{#1}}
-\newcommand\Lied[3]{
-    \ifthenelse{\equal{#3}{}}{
-        \stk{#1}{}
-    }{
-        \stk{#1:}{#3}
-        \zulieder{\textit{#2.}\ #3}
-    }
-}
-\newcommand\LiedNull[2]{\stk{#1:}{#2}}
-\newcommand\Text[3]{\stk{#1:}{#3}\zutexte{\textit{#2.}\ #3}}
 
 \newcommand\Predigt[1]{
     \stk{Predigt über \@predigttext}{}
