@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/12/21 v0.22 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/12/21 v0.23 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -186,7 +186,7 @@
 }
 
 \def\Ablauf{\newpage
-    {\noindent\bfseries\Large\@art: \@ltitel\\\noindent\large\@feiertag\ am \@gdatum, \@ort\vfill\noindent\large\bfseries\color{\@farbe!80} Liturgischer Ablauf}
+    {\noindent\bfseries\Large\@art: \@ltitel\\\noindent\large\@feiertag\ am \@gdatum, \@ort\vfill\noindent\large\bfseries\color{\@farbe!80} Liturgischer Ablauf {\normalsize(\textbf{Stand:} \today)}}
     \Border{\@farbe}{white}{0.5cm}
     \begin{multicols}{2}
     \tableofcontents\thispagestyle{empty}
@@ -248,9 +248,7 @@
     
     \vfill
     
-    \noindent\textit{\@autor}\\
-    \textit{Tel. \@autorTelefon}\\
-    \textit{E-Mail: \@autorEMail} \hfill \textbf{Stand:} \today
+    \noindent\textit{\@autor}\hfill\textit{Tel. \@autorTelefon}\hfill\textit{E-Mail: \@autorEMail}
     \label{ablauf}
 }
 
@@ -282,7 +280,6 @@
     \noindent\textit{\@autor}\par\part*{\textcolor{\@farbe!80}\@ltitel}
     \par\textit{Predigt über \@predigttext\ (\@lesejahr)\\\@gdatum, \@feiertag}\vspace{0.75em}\hrule\hrule\vspace{1.75em}
     %\newpage
-    \begin{addmargin}[0cm]{2.5cm}
     \large
     \Priest{Gnade sei mit \mbox{euch /} und Friede von Gott, unserm \mbox{Vater, /} und dem Herrn Jesus Christus.}\hfill \Korr{Amen.} % Kanzelgruß
     \par
@@ -295,8 +292,8 @@
     \par\Kanzelsegen % Kanzelsegen
     \par\rubrik{\Opt{Gebet nach der Predigt}}
     %\begin{center}Amen.\end{center}
-    \end{addmargin}
     %\KOMAoptions{paper=A4}
+    \normalsize\Predigtlied{\@predigtlied}
     \KOMAoptions{fontsize=10pt}
     %\normalsize
     \cleardoublepage
@@ -354,18 +351,19 @@
 \newenvironment{AKGu}[1]{ % vorher
     \Needspace{7\baselineskip}
     \AKG{#1}
+    \begin{multicols}{2}
     \begin{displayquote}
-    \Large
-    \setstretch{1.5}
+    \large
 }{ % danach
     \end{displayquote}
+    \end{multicols}{2}
 }
 
 \newenvironment{Dankgebetu}[1]{ % vorher
     \Needspace{7\baselineskip}
     \Dankgebet{#1}
     \begin{displayquote}
-    \Large
+    \large
 }{ % danach
     \end{displayquote}
 }
@@ -373,38 +371,46 @@
 \newenvironment{DankgebetFBu}[1]{ % vorher
     \Needspace{7\baselineskip}
     \DankgebetFB{#1}
+    \begin{multicols}{2}
     \begin{displayquote}
-    \Large
+    \large
 }{ % danach
     \end{displayquote}
+    \end{multicols}{2}
 }
 
 \newenvironment{Gebetu}[1]{ % vorher
     \Needspace{7\baselineskip}
     \stk{#1}{}
+    \begin{multicols}{2}
     \begin{displayquote}
-    \Large
+    \large
 }{ % danach
     \end{displayquote}
+    \end{multicols}{2}
 }
 
 \newenvironment{GebetPu}[1]{ % vorher
     \Needspace{7\baselineskip}
     \paragraph{#1}
+    \begin{multicols}{2}
     \begin{displayquote}
-    \Large
+    \large
 }{ % danach
     \end{displayquote}
+    \end{multicols}{2}
 }
 
 \newenvironment{AKGmitLiedu}{ % vorher
     \Needspace{7\baselineskip}
     \AKGmitLied
+    \begin{multicols}{2}
     \begin{displayquote}
-    \Large
+    \large
 }
 { % danach
     \end{displayquote}
+    \end{multicols}{2}
 }
 
 \newenvironment{EpistelU}[1]{ % vorher
@@ -651,24 +657,39 @@ Amen.
 \newcommand\epiklese{\stkNull{Epiklese}{}}
 \newcommand\anamnese{\stkNull{Anamnese}{}}
 
-\newcommand\Vaterunser[1]{\if@ausfuehrlich\begin{Gebetu}{\ifthenelse{\equal{#1}{}}{Vaterunser}{Vaterunser: #1}}
-Vater unser im Himmel.\newline
-Geheiligt werde dein Name.\newline
-Dein Reich komme.\newline
-Dein Wille geschehe,\newline
-wie im Himmel, so auf Erden.\newline
-Unser tägliches Brot gib uns heute.\newline
-Und vergib uns unsere Schuld,\newline
-wie auch wir vergeben unsern Schuldigern.\newline
-Und führe uns nicht in Versuchung,\newline
-sondern erlöse uns von dem Bösen.\newline
-Denn dein ist das Reich und die Kraft und die Herrlichkeit\newline
-in Ewigkeit.\newline
-Amen.
-\end{Gebetu}
-\else
-\ifthenelse{\equal{#1}{}}{\stk{Vaterunser}{}}{\stk{Vaterunser: #1}{}\zulieder{\textit{VU.} #1}}
-\fi}
+\newcommand\Vaterunser[1]{%
+    \if@ausfuehrlich
+        \begin{Gebetu}{%
+            \ifstrempty{#1}{%
+                Vaterunser
+            }{%
+                Vaterunser: #1
+                \zulieder{\textit{VU.} #1}
+            }
+        }
+        Vater unser im Himmel.\newline
+        Geheiligt werde dein Name.\newline
+        Dein Reich komme.\newline
+        Dein Wille geschehe,\newline
+        wie im Himmel, so auf Erden.\newline
+        Unser tägliches Brot gib uns heute.\newline
+        Und vergib uns unsere Schuld,\newline
+        wie auch wir vergeben unsern Schuldigern.\newline
+        Und führe uns nicht in Versuchung,\newline
+        sondern erlöse uns von dem Bösen.\newline
+        Denn dein ist das Reich und die Kraft und die Herrlichkeit\newline
+        in Ewigkeit.\newline
+        Amen.
+        \end{Gebetu}
+    \else
+        \ifstrempty{#1}{%
+            \stk{Vaterunser}{}
+        }{%
+            \stk{Vaterunser: #1}{}
+            \zulieder{\textit{VU.} #1}
+        }
+    \fi
+}
 \let\VaterunserAbm\Vaterunser
 
 \newcommand\VerbaTestamenti{\stkNull{Einsetzungsworte}{}}
@@ -680,7 +701,7 @@ Amen.
 \newcommand\Friedensgruss{\stkNull{Friedensgruß}{}}
 \newcommand\AgnusDei{\stkNull{Agnus Dei}{}}
 \newcommand\Kommunion[1]{
-    \ifthenelse{\equal{#1}{}}{
+    \ifstrempty{#1}{
         \stkNull{Kommunion}{}
     }{
         \stkNull{Kommunion, dazu #1}{}
@@ -816,6 +837,7 @@ Amen.
 \newcommand*{\fuerb}[1]{\gdef\@fuerb{#1}} \newcommand*{\@fuerb}{}
 
 \newcommand*{\predigttext}[1]{\gdef\@predigttext{#1}} \newcommand*{\@predigttext}{}
+\newcommand*{\predigtlied}[1]{\gdef\@predigtlied{#1}} \newcommand*{\@predigtlied}{}
 \newcommand*{\anmerkungen}[1]{\gdef\@anmerkungen{#1}} \newcommand*{\@anmerkungen}{}
 \newcommand*{\Wochenspruch}{\footnotesize{Wochenspruch aus \@wochenspruchStelle:}\\ \normalsize\textit{\glqq\@wochenspruch\grqq}}
 
