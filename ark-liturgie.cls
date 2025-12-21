@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/11/22 v0.19 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2025/12/21 v0.20 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -84,7 +84,7 @@
 \RequirePackage[normalem]{ulem} % use normalem to protect \emph
 \RequirePackage[none]{hyphenat}
 \RequirePackage{tabularray}
-\RequirePackage{csquotes}
+\RequirePackage[autostyle=true,german=quotes]{csquotes}
 
 %% Bibelstellen
 \RequirePackage[kurz]{bibleref-german}
@@ -283,8 +283,7 @@
 
 % Umgebungen
 
-\newenvironment{predigt}
-{
+\newenvironment{predigt}{ % vorher
     \newpage
     %\KOMAoptions{paper=A5}
     \KOMAoptions{fontsize=14pt}
@@ -299,8 +298,7 @@
     \rubrik{\Opt{Gebet vor der Predigt}}
     \vspace{0.5cm}
     \setstretch{1.5}
-} % vorher
-{
+}{ % danach
     \setstretch{1}
     \vspace{0.5cm}
     \par\Kanzelsegen % Kanzelsegen
@@ -312,18 +310,14 @@
     %\normalsize
     \cleardoublepage
     %\recalctypearea
-} % danach
-
-\def\Kanzelsegen{\Priest{Und der Friede \mbox{Gottes, /} welcher höher ist als alle \mbox{Vernunft, /} bewahre unsere Herzen und Sinne in Christus Jesus.}\hfill\Korr{Amen.}}
+}
 
 \newenvironment{rubriku}{ % vorher
     \vspace{0.2cm}
     \begin{center}
     \footnotesize
     \color{\@farbe!80}
-}
-{ % danach
-    \normalsize
+}{ % danach
     \end{center}
 }
 
@@ -334,156 +328,132 @@
     \itshape
     \color{OliveGreen}
     \begin{addmargin}[2cm]{2cm}
-}
-{ % danach
-    \normalsize
-    \normalfont
+}{ % danach
     \end{addmargin}
     \fi
 }
 
-\newenvironment{predigttextu}{
+\newenvironment{predigttextu}{ % vorher
     %\filbreak
     \subsubsection*{Lesung des Predigttextes: \@predigttext}
     \begin{displayquote}
     %\LARGE
-} % vorher
-{
+}{ % danach
     \hfill \mbox{\normalsize \@predigttext}
     \end{displayquote}
-} % danach
+}
 
-\newenvironment{Kollekteu}{
+\newenvironment{Kollekteu}{ % vorher
     \filbreak
     \Kollekte
     \begin{displayquote}
     \Large
-} % vorher
-{
-    \normalsize
+}{ % danach
     \end{displayquote}
-} % danach
+}
 
-\newenvironment{Begruessungu}{
+\newenvironment{Begruessungu}{ % vorher
     \filbreak
     \Begruessung
     \begin{displayquote}
     \Large
-} % vorher
-{
-    \normalsize
+}{ % danach
     \end{displayquote}
-} % danach
+}
 
-\newenvironment{AKGu}[1]{
+\newenvironment{AKGu}[1]{ % vorher
     \AKG{#1}
     \begin{displayquote}
     \Large
     \setstretch{1.5}
-} % vorher
-{
-    \setstretch{1}
-    \normalsize
+}{ % danach
     \end{displayquote}
-} % danach
+}
 
-\newenvironment{Dankgebetu}[1]{
+\newenvironment{Dankgebetu}[1]{ % vorher
     \Dankgebet{#1}
     \begin{displayquote}
     \Large
-} % vorher
-{
-    \normalsize
+}{ % danach
     \end{displayquote}
-} % danach
+}
 
-\newenvironment{DankgebetFBu}[1]{
+\newenvironment{DankgebetFBu}[1]{ % vorher
     \DankgebetFB{#1}
     \begin{displayquote}
     \Large
-} % vorher
-{
-    \normalsize
+}{ % danach
     \end{displayquote}
-} % danach
+}
 
-\newenvironment{Gebetu}[1]{
+\newenvironment{Gebetu}[1]{ % vorher
     \stk{#1}{}
     \begin{displayquote}
     \Large
-} % vorher
-{
+}{ % danach
     \end{displayquote}
-    \normalsize
-} % danach
+}
 
-\newenvironment{GebetPu}[1]{
+\newenvironment{GebetPu}[1]{ % vorher
     \paragraph{#1}
     \begin{displayquote}
     \Large
-} % vorher
-{
+}{ % danach
     \end{displayquote}
-    \normalsize
-} % danach
+}
 
-\newenvironment{AKGmitLiedu}{
+\newenvironment{AKGmitLiedu}{ % vorher
     \filbreak
     \AKGmitLied
     \begin{displayquote}
     \Large
-} % vorher
-{
-    \normalsize
+}
+{ % danach
     \end{displayquote}
-} % danach
+}
 
-\newenvironment{EpistelU}[1]{
+\newenvironment{EpistelU}[1]{ % vorher
     %\filbreak
     \Epistel{#1}
     %\begin{multicols}{2}
     \begin{displayquote}
     \large
-} % vorher
-{
+}{ % danach
     %\hfill {\normalsize \@predigttext}
     \end{displayquote}
     %\end{multicols}
-    \normalsize
-    \newpage
-} % danach
+    %\filbreak
+}
 
-\newenvironment{LesungU}[1]{
+\newenvironment{LesungU}[1]{ % vorher
     %\filbreak
     \Lesung{#1}
     %\begin{multicols}{2}
     \begin{displayquote}
     \large
-} % vorher
-{
+}{ % danach
     %\hfill {\normalsize \@predigttext}
     \end{displayquote}
     %\end{multicols}
-    \normalsize
     %\filbreak
-} % danach
+}
 
-\newenvironment{predigtschlussgebet}{
+\newenvironment{predigtschlussgebet}{ % vorher
     %\filbreak
     \subsubsection*{Predigtschlußgebet}
     \begin{displayquote}
     \LARGE
     \Priest{}
-} % vorher
-{
+}{ % danach
     \Korr{Amen.}
     \end{displayquote}
-    \normalsize
-} % danach
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\Kanzelsegen{\Priest{Und der Friede \mbox{Gottes, /} welcher höher ist als alle \mbox{Vernunft, /} bewahre unsere Herzen und Sinne in Christus Jesus.}\hfill\Korr{Amen.}}
 
 % Abschnitte
 
