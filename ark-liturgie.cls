@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/02/24 v0.28 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/02/24 v0.29 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -324,6 +324,7 @@
 \newenvironment{predigttextu}{ % vorher
     \Needspace{10\baselineskip}
     \subsubsection*{Lesung des Predigttextes: \@predigttext}
+    \setlength{\columnsep}{0.05\textwidth}
     \begin{multicols}{2}
     %\begin{displayquote}
     %\LARGE
