@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2025/12/21 v0.27 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/02/24 v0.28 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -525,12 +525,12 @@
 \newcommand\Salutatio{\stk{Salutatio}{}}
 \let\Gruss\Salutatio
 
-\newcommand\Eingangslied[1]{\Lied{Eingangslied:}{EL}{#1}}
+\newcommand\Eingangslied[1]{\Lied{Eingangslied}{EL}{#1}}
 \newcommand\entfaltetesKyrie[1]{\Lied{Entfaltetes Kyriegebet mit #1}{EKy}{#1}}
-\newcommand\Kyrie[1]{\Lied{Kyrie:}{Ky}{#1}}
+\newcommand\Kyrie[1]{\Lied{Kyrie}{Ky}{#1}}
 \newcommand\Halleluja[1]{
     \if@keinebusszeit
-        \Lied{Halleluja:}{Hall}{#1}
+        \Lied{Halleluja}{Hall}{#1}
         \renewcommand\Halleluja[1]{
             \stk{Halleluja}{#1}
         }
@@ -540,22 +540,22 @@
 }
 \newcommand\HallelujaVers[1]{
     \if@keinebusszeit
-        \Lied{Hallelujavers:}{HallV}{#1}
+        \Lied{Hallelujavers}{HallV}{#1}
     \else
         \STOPPFEHLER{ark-liturgie}{Kein Halleluja in Bußzeiten.}
     \fi
 }
-\newcommand\Gloria[1]{\if@keinebusszeit\Lied{Gloria:}{Glo}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Gloria in Bußzeiten.}\fi}
-\newcommand\Glorialied[1]{\if@keinebusszeit\Lied{Glorialied:}{GloL}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Gloria in Bußzeiten.}\fi}
-\newcommand\Beichtlied[1]{\if@beichte\Lied{Beichtlied:}{BL}{#1}\fi}
+\newcommand\Gloria[1]{\if@keinebusszeit\Lied{Gloria}{Glo}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Gloria in Bußzeiten.}\fi}
+\newcommand\Glorialied[1]{\if@keinebusszeit\Lied{Glorialied}{GloL}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Gloria in Bußzeiten.}\fi}
+\newcommand\Beichtlied[1]{\if@beichte\Lied{Beichtlied}{BL}{#1}\fi}
 \newcommand\Beichthandlung{\stk{Beichthandlung}{}}
 \newcommand\AbendmahlLied[1]{\if@abendmahl\Lied{Lied zum Abendmahl}{Abm}{#1}\else\STOPPFEHLER{ark-liturgie}{Kein Abendmahl in Dokumentenklasse.}\fi}
-\newcommand\Liedvers[1]{\Lied{Liedvers:}{LV}{#1}}
-\newcommand\Wochenlied[1]{\Lied{Wochnlied:}{WL}{#1}}
-\newcommand\Hauptlied[1]{\Lied{Hauptlied:}{HL}{#1}}
-\newcommand\Predigtlied[1]{\Lied{Predigtlied:}{PL}{#1}}
-\newcommand\Schlusslied[1]{\Lied{Schlusslied:}{SL}{#1}}
-\newcommand\GloriaInExcelsis[1]{\Lied{Gloria in Excelsis:}{GiE}{#1}}
+\newcommand\Liedvers[1]{\Lied{Liedvers}{LV}{#1}}
+\newcommand\Wochenlied[1]{\Lied{Wochnlied}{WL}{#1}}
+\newcommand\Hauptlied[1]{\Lied{Hauptlied}{HL}{#1}}
+\newcommand\Predigtlied[1]{\Lied{Predigtlied}{PL}{#1}}
+\newcommand\Schlusslied[1]{\Lied{Schlusslied}{SL}{#1}}
+\newcommand\GloriaInExcelsis[1]{\Lied{Gloria in Excelsis}{GiE}{#1}}
 
 \newcommand\Beichtgebet[1]{\if@beichte\Lied{Beichtgebet/Sündenbekenntnis}{SB}{#1}\fi}
 \let\Suendenbekenntnis\Beichtgebet
@@ -573,15 +573,15 @@
 
 \newcommand\Confiteor{\stk{Confiteor}{}}
 \newcommand\SConfiteor{\stk{Salutatio, Confiteor}{}}
-\newcommand\AKG[1]{\stk{Fürbitten}{(#1)}}
+\newcommand\AKG[1]{\stk{Fürbitten}{#1}}
 \newcommand\AKGmitLied[2]{\stk{Fürbitten}{(#1) mit #2}\zulieder{\textit{Füb.} #2}}
 
 \newcommand\Dankgebet[1]{\stkNull{Schlußversikel}{}\stk{Dankgebet (#1)}{}}
 
 \newcommand\DankgebetFB[1]{\stkNull{Schlußversikel}{}\stk{Dankgebet mit Fürbitten (#1)}{}}
 
-\newcommand\Introitus[1]{\Lied{Introitus:}{Int}{#1}}
-\newcommand\Psalm[1]{\Lied{Psalmgebet:}{Ps}{#1}}
+\newcommand\Introitus[1]{\Lied{Introitus}{Int}{#1}}
+\newcommand\Psalm[1]{\Lied{Psalmgebet}{Ps}{#1}}
 \newcommand\Epistel[1]{\Text{Epistel:}{Ep}{#1}}
 \newcommand\AltesTestament[1]{\Text{Altes Testament:}{AT}{#1}}
 \newcommand\Evangelium[1]{\Text{Evangelium:}{Ev}{#1}}
@@ -723,10 +723,13 @@ Amen.
 \newcommand\Eingangsgebet{\stk{Eingangsgebet}{}}
 
 % stk
-\newcommand\stkNull[2]{\filbreak\subsection*{#1\ #2\hfill\hyperref[ablauf]{\normalfont\footnotesize\itshape [Ablauf]}}}
+\newcommand\stkNull[2]{%
+    \filbreak
+    \subsection*{#1\ifthenelse{\equal{#2}{}}{}{:}\ #2\hfill\hyperref[ablauf]{\normalfont\footnotesize\itshape [Ablauf]}}
+}
 \newcommand\stk[2]{ %
     \stkNull{#1}{#2}
-    \addcontentsline{toc}{subsection}{#1\ #2}
+    \ifthenelse{\equal{#2}{}}{\addcontentsline{toc}{subsection}{#1\ #2}}{\addcontentsline{toc}{subsection}{#1:\ #2}}
 }
 
 % Lied
