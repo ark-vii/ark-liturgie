@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/02/24 v0.29 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/03/01 v0.30 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -352,10 +352,10 @@
     \end{displayquote}
 }
 
-\newenvironment{AKGu}[1]{ % vorher
+\newenvironment{AKGu}[2][]{ % vorher
     \Needspace{7\baselineskip}
-    \AKG{#1}
-    \begin{multicols}{2}
+    \AKG{#2}
+    \begin{multicols}{2}[#1]
     %\begin{displayquote}
     \large
 }{ % danach
@@ -583,9 +583,9 @@
 
 \newcommand\Introitus[1]{\Lied{Introitus}{Int}{#1}}
 \newcommand\Psalm[1]{\Lied{Psalmgebet}{Ps}{#1}}
-\newcommand\Epistel[1]{\Text{Epistel:}{Ep}{#1}}
+\newcommand\Epistel[1]{\Text{Epistel}{Ep}{#1}}
 \newcommand\AltesTestament[1]{\Text{Altes Testament:}{AT}{#1}}
-\newcommand\Evangelium[1]{\Text{Evangelium:}{Ev}{#1}}
+\newcommand\Evangelium[1]{\Text{Evangelium}{Ev}{#1}}
 
 \newcommand\Credo[1]{\if@ausfuehrlich\begin{Gebetu}{Credo #1}
 \ifthenelse{\equal{#1}{Nicaenum}}{
@@ -762,7 +762,7 @@ Amen.
         \zutexte{\textit{\color{\@farbe!80} #2.}\ #3}
     }
 }
-\newcommand\Lesung[1]{\Text{Lesung:}{}{#1}}
+\newcommand\Lesung[1]{\Text{Lesung}{}{#1}}
 % Liste
 \def\texte{}
 \def\zutexte#1{%
