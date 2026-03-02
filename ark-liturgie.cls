@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/03/01 v0.30 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/03/02 v0.31 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -587,7 +587,7 @@
 \newcommand\AltesTestament[1]{\Text{Altes Testament:}{AT}{#1}}
 \newcommand\Evangelium[1]{\Text{Evangelium}{Ev}{#1}}
 
-\newcommand\Credo[1]{\if@ausfuehrlich\begin{Gebetu}{Credo #1}
+\newcommand\Credo[1]{\if@ausfuehrlich\begin{Gebetu}{Credo: #1}
 \ifthenelse{\equal{#1}{Nicaenum}}{
 Wir glauben an den einen Gott,\\
 den Vater,\\
@@ -651,7 +651,7 @@ Amen.
 }
 \end{Gebetu}
 \else
-\stk{Credo #1}{}
+\stk{Credo}{#1}
 \fi}
 
 \newcommand\CredoGesungen[1]{\stk{Credo #1 (gesungen)}{}
@@ -769,7 +769,7 @@ Amen.
     \global\listadd{\texte}{#1}
 }
 
-\newcommand\Ansprache[1]{\stk{Ansprache:}{#1}}
+\newcommand\Ansprache[1]{\stk{Ansprache}{#1}}
 \newcommand\Handlung[1]{\stk{#1}{}}
 \newcommand\Gebet[1]{\stk{Gebet:}{#1}}
 \newcommand\Gesang[1]{\stk{Gesang:}{#1}}
