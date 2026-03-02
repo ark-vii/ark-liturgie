@@ -587,7 +587,7 @@
 \newcommand\AltesTestament[1]{\Text{Altes Testament:}{AT}{#1}}
 \newcommand\Evangelium[1]{\Text{Evangelium}{Ev}{#1}}
 
-\newcommand\Credo[1]{\if@ausfuehrlich\begin{Gebetu}{Credo: #1}
+\newcommand\Credo[1]{\if@ausfuehrlich\begin{Gebetu}{Credo #1}
 \ifthenelse{\equal{#1}{Nicaenum}}{
 Wir glauben an den einen Gott,\\
 den Vater,\\
@@ -651,7 +651,7 @@ Amen.
 }
 \end{Gebetu}
 \else
-\stk{Credo}{#1}
+\stk{Credo #1}{}
 \fi}
 
 \newcommand\CredoGesungen[1]{\stk{Credo #1 (gesungen)}{}
