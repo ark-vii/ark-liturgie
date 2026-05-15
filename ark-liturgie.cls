@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/05/15 v0.32 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/05/15 v0.33 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -675,7 +675,7 @@ Amen.
                 Vaterunser
             }{%
                 Vaterunser: #1
-                \zulieder{\textit{VU.} #1}
+                \zulieder{\textit{\color{\@farbe!80} VU.} #1}
             }
         }
         Vater unser im Himmel.\newline
@@ -697,7 +697,7 @@ Amen.
             \stk{Vaterunser}{}
         }{%
             \stk{Vaterunser: #1}{}
-            \zulieder{\textit{VU.} #1}
+            \zulieder{\textit{\color{\@farbe!80} VU.} #1}
         }
     \fi
 }
@@ -716,7 +716,7 @@ Amen.
         \stkNull{Kommunion}{}
     }{
         \stkNull{Kommunion, dazu #1}{}
-        \zulieder{\textit{Komm.} #1}
+        \zulieder{\textit{\color{\@farbe!80} Komm.} #1}
     }
 }
 \newcommand\Segen[1]{\stk{#1 Segen}{}}
