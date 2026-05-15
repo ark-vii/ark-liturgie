@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/03/02 v0.31 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/05/15 v0.32 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -293,7 +293,8 @@
     \par\rubrik{\Opt{Gebet nach der Predigt}}
     %\begin{center}Amen.\end{center}
     %\KOMAoptions{paper=A4}
-    \normalsize\Predigtlied{\@predigtlied}
+    \normalsize
+    \ifthenelse{\equal{\@predigtlied}{}}{}{\Predigtlied{\@predigtlied}}
     \KOMAoptions{fontsize=10pt}
     %\normalsize
     \cleardoublepage
