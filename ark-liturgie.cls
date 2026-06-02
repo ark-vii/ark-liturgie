@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/05/15 v0.33 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/06/03 v0.34 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -454,6 +454,7 @@
     \Needspace{7\baselineskip}
     \Lesung{#1}
     %
+    \setlength{\columnsep}{0.05\textwidth}
     \begin{multicols}{2}
     %\begin{displayquote}
     \large
