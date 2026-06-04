@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/06/04 v0.36.2 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/06/04 v0.37 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -194,12 +194,23 @@
     \colorlet{Wichtig}{white} % grün
 }
 
+\if@liedertafel
+    \usepackage[toc]{multitoc}
+    \renewcommand*{\multicolumntoc}{2}
+\fi
+\if@auszuglektor
+    \usepackage[toc]{multitoc}
+    \renewcommand*{\multicolumntoc}{2}
+\fi
+\if@verteiler
+    \usepackage[toc]{multitoc}
+    \renewcommand*{\multicolumntoc}{2}
+\fi
+
 \def\Ablauf{\newpage
     {\noindent\bfseries\Large\@art: \@ltitel\\\noindent\large\@feiertag\ am \@gdatum, \@ort\par\noindent\large\bfseries\color{\@farbe!80} Liturgischer Ablauf {\normalsize(\textbf{Stand:} \today)}}
     \Border{\@farbe}{white}{0.5cm}
-    \begin{multicols}{2}
     \tableofcontents\thispagestyle{empty}
-    \end{multicols}
 
     \if@liedertafel
         \par
