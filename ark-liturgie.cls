@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/06/04 v0.38 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/06/04 v0.38.1 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -215,7 +215,7 @@
 \fi
 
 \ifthenelse{\equal{\@anmerkungen}{}}{}{%
-    \addtocounter{registeranzahl}{1}%
+    \addtocounter{registerzahl}{1}%
 }
 
 \ifnum\the\value{registerzahl}>2
