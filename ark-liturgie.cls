@@ -1,17 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/06/04 v0.38.1 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/06/04 v0.38.2 ARK-Liturgie]
 
-\newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
-\DeclareOption{predigt}{\@liturgiemitpredigttrue}
-\DeclareOption{mitpredigt}{\@liturgiemitpredigttrue}
-\DeclareOption{liturgiemitpredigt}{\@liturgiemitpredigttrue}
+\newif\if@predigt\@predigtfalse
+\DeclareOption{predigt}{\@predigttrue}
+\DeclareOption{mitpredigt}{\@predigttrue}
+\DeclareOption{predigt}{\@predigttrue}
 
 \newif\if@keinebusszeit\@keinebusszeittrue
 \DeclareOption{busszeit}{\@keinebusszeitfalse}
 
 \newif\if@ausfuehrlich\@ausfuehrlichfalse
 \DeclareOption{ausfuehrlich}{\@ausfuehrlichtrue}
-\DeclareOption{handout}{\@ausfuehrlichtrue\@liturgiemitpredigttrue}
+\DeclareOption{handout}{\@ausfuehrlichtrue\@predigttrue}
 
 \newif\if@abendmahl\@abendmahlfalse
 \DeclareOption{abendmahl}{\@abendmahltrue}
@@ -21,15 +21,20 @@
 
 \newif\if@liedertafel\@liedertafelfalse
 \DeclareOption{liedertafel}{\@liedertafeltrue}
+\DeclareOption{lieder}{\@liedertafeltrue}
 
 \newif\if@auszuglektor\@auszuglektorfalse
 \DeclareOption{auszuglektor}{\@auszuglektortrue}
+\DeclareOption{auszuglektorin}{\@auszuglektortrue}
 
 \newif\if@verteiler\@verteilerfalse
 \DeclareOption{verteiler}{\@verteilertrue}
 
-\newif\if@liturgiemitbegruendung\@liturgiemitbegruendungfalse
-\DeclareOption{begruendung}{\@liturgiemitbegruendungtrue}
+\newif\if@anmerkungen\@anmerkungenfalse
+\DeclareOption{anmerkungen}{\@anmerkungentrue}
+
+\newif\if@begruendung\@begruendungfalse
+\DeclareOption{begruendung}{\@begruendungtrue}
 
 \DeclareOption*{
     \PassOptionsToClass{\CurrentOption}{scrartcl}
@@ -42,6 +47,42 @@
 \preto\@raw@classoptionslist{ngerman,notitlepage,bibliography=totoc,parskip=full,fontsize=10pt,a4paper,DIV=18,dvipsnames,onehalfspacing,hidelinks,}
 
 \LoadClass{scrartcl}
+
+% Dokumentvariablen/Befehle
+\newcommand*{\autor}[1]{\gdef\@autor{#1}} \newcommand*{\@autor}{}
+\newcommand*{\autorAnschrift}[1]{\gdef\@autorAnschrift{#1}} \newcommand*{\@autorAnschrift}{}
+\newcommand*{\autorEMail}[1]{\gdef\@autorEMail{#1}} \newcommand*{\@autorEMail}{}
+\newcommand*{\autorTelefon}[1]{\gdef\@autorTelefon{#1}} \newcommand*{\@autorTelefon}{}
+\newcommand*{\art}[1]{\gdef\@art{#1}} \newcommand*{\@art}{Hauptgottesdienst}
+\newcommand*{\ltitel}[1]{\gdef\@ltitel{#1}} \newcommand*{\@ltitel}{TITEL}
+\newcommand*{\feiertag}[1]{\gdef\@feiertag{#1}} \newcommand*{\@feiertag}{}
+\newcommand*{\wochenspruch}[1]{\gdef\@wochenspruch{#1}} \newcommand*{\@wochenspruch}{}
+\newcommand*{\wochenspruchStelle}[1]{\gdef\@wochenspruchStelle{#1}} \newcommand*{\@wochenspruchStelle}{}
+\newcommand*{\ort}[1]{\gdef\@ort{#1}} \newcommand*{\@ort}{}
+\newcommand*{\gdatum}[1]{\gdef\@gdatum{#1}} \newcommand*{\@gdatum}{\today}
+\newcommand*{\jahr}[1]{\gdef\@jahr{#1}} \newcommand*{\@jahr}{}
+\newcommand*{\farbe}[1]{\gdef\@farbe{#1}} \newcommand*{\@farbe}{litgruen}
+\newcommand*{\lesejahr}[1]{\gdef\@lesejahr{#1}} \newcommand*{\@lesejahr}{}
+\newcommand*{\pfarramt}[1]{\gdef\@pfarramt{#1}} \newcommand*{\@pfarramt}{Pfarramt}
+\newcommand*{\musik}[1]{\gdef\@musik{#1}} \newcommand*{\@musik}{}
+\newcommand*{\mesnerin}[1]{\gdef\@mesnerin{#1}} \newcommand*{\@mesnerin}{}
+\newcommand*{\priest}[1]{\gdef\@priest{#1}} \newcommand*{\@priest}{}
+\newcommand*{\diakon}[1]{\gdef\@diakon{#1}} \newcommand*{\@diakon}{}
+\newcommand*{\lektorGruss}[1]{\gdef\@lektorGruss{#1}} \newcommand*{\@lektorGruss}{}
+\newcommand*{\lektorLesung}[1]{\gdef\@lektorLesung{#1}} \newcommand*{\@lektorLesung}{}
+\newcommand*{\prediger}[1]{\gdef\@prediger{#1}} \newcommand*{\@prediger}{}
+\newcommand*{\litgesang}[1]{\gdef\@litgesang{#1}} \newcommand*{\@litgesang}{}
+\newcommand*{\gesang}[1]{\gdef\@gesang{#1}} \newcommand*{\@gesang}{}
+\newcommand*{\abendmahlshelferA}[1]{\gdef\@abendmahlshelferA{#1}} \newcommand*{\@abendmahlshelferA}{}
+\newcommand*{\abendmahlshelferB}[1]{\gdef\@abendmahlshelferB{#1}} \newcommand*{\@abendmahlshelferB}{}
+\newcommand*{\abendmahlshelferC}[1]{\gdef\@abendmahlshelferC{#1}} \newcommand*{\@abendmahlshelferC}{}
+\newcommand*{\fuerb}[1]{\gdef\@fuerb{#1}} \newcommand*{\@fuerb}{}
+
+\newcommand*{\predigttext}[1]{\gdef\@predigttext{#1}} \newcommand*{\@predigttext}{}
+\newcommand*{\predigtlied}[1]{\gdef\@predigtlied{#1}} \newcommand*{\@predigtlied}{}
+\newcommand*{\anmerkungen}[1]{\gdef\@anmerkungen{#1}} \newcommand*{\@anmerkungen}{}
+\newcommand*{\Wochenspruch}{\footnotesize{Wochenspruch aus \@wochenspruchStelle:}\\ \normalsize\textit{\glqq\@wochenspruch\grqq}}
+%%%%%%
 
 \def\STOPPFEHLER#1#2{
     \ClassError{#1}{#2}
@@ -214,9 +255,9 @@
 \addtocounter{registerzahl}{1}
 \fi
 
-\ifthenelse{\equal{\@anmerkungen}{}}{}{%
+\if@anmerkungen
     \addtocounter{registerzahl}{1}%
-}
+\fi
 
 \ifnum\the\value{registerzahl}>2
     \usepackage[toc]{multitoc}
@@ -254,12 +295,12 @@
         \end{multicols}
     \fi
     
-    \ifthenelse{\equal{\@anmerkungen}{}}{}{
+    \if@anmerkungen
         {\noindent\large\bfseries\color{\@farbe!80} Anmerkungen}\par
         %\begin{multicols}{2}
         \noindent\@anmerkungen
         %\end{multicols}
-    }
+    \fi
 
     \if@verteiler
         {\noindent\large\bfseries\color{\@farbe!80} Mitwirkende/Verteiler \normalfont\ifthenelse{\equal{\@pfarramt}{}}{}{über \@pfarramt}}
@@ -345,7 +386,7 @@
 }
 
 \newenvironment{begruendungu}{ % vorher
-    \if@liturgiemitbegruendung
+    \if@begruendung
     \vspace{0.2cm}
     \footnotesize
     \itshape
@@ -552,7 +593,7 @@
 
 % Rubriken
 \newcommand\rubrik[1]{\par\noindent\textcolor{\@farbe!80}{\upshape #1}\par}
-\newcommand\begruendung[1]{\if@liturgiemitbegruendung\par\begin{addmargin}[2cm]{2cm}\color{OliveGreen}\footnotesize\itshape\noindent #1\normalfont\normalsize\end{addmargin}\par\fi}
+\newcommand\begruendung[1]{\if@begruendung\par\begin{addmargin}[2cm]{2cm}\color{OliveGreen}\footnotesize\itshape\noindent #1\normalfont\normalsize\end{addmargin}\par\fi}
 \newcommand\rubriklang[1]{\noindent\begin{Rubrik}#1\end{Rubrik}}
 
 % Anweisungen am Rand
@@ -839,7 +880,7 @@ Amen.
 
 \newcommand\Predigt[1]{
     \stk{Predigt über \@predigttext}{}
-    \if@liturgiemitpredigt\subfile{#1}\newpage\fi
+    \if@predigt\subfile{#1}\newpage\fi
 }
 
 \newcommand\PredigtInline{
@@ -880,41 +921,6 @@ Amen.
 }
 
 \newcommand\opT[3]{\textcolor{\@farbe!80}{{[}}\,#1\,\textcolor{\@farbe!80}{{|}}\,#2\,\textcolor{\@farbe!80}{{|}}\,#3\,\textcolor{\@farbe!80}{{]}}}
-
-% Variablen
-\newcommand*{\autor}[1]{\gdef\@autor{#1}} \newcommand*{\@autor}{}
-\newcommand*{\autorAnschrift}[1]{\gdef\@autorAnschrift{#1}} \newcommand*{\@autorAnschrift}{}
-\newcommand*{\autorEMail}[1]{\gdef\@autorEMail{#1}} \newcommand*{\@autorEMail}{}
-\newcommand*{\autorTelefon}[1]{\gdef\@autorTelefon{#1}} \newcommand*{\@autorTelefon}{}
-\newcommand*{\art}[1]{\gdef\@art{#1}} \newcommand*{\@art}{Hauptgottesdienst}
-\newcommand*{\ltitel}[1]{\gdef\@ltitel{#1}} \newcommand*{\@ltitel}{TITEL}
-\newcommand*{\feiertag}[1]{\gdef\@feiertag{#1}} \newcommand*{\@feiertag}{}
-\newcommand*{\wochenspruch}[1]{\gdef\@wochenspruch{#1}} \newcommand*{\@wochenspruch}{}
-\newcommand*{\wochenspruchStelle}[1]{\gdef\@wochenspruchStelle{#1}} \newcommand*{\@wochenspruchStelle}{}
-\newcommand*{\ort}[1]{\gdef\@ort{#1}} \newcommand*{\@ort}{}
-\newcommand*{\gdatum}[1]{\gdef\@gdatum{#1}} \newcommand*{\@gdatum}{\today}
-\newcommand*{\jahr}[1]{\gdef\@jahr{#1}} \newcommand*{\@jahr}{}
-\newcommand*{\farbe}[1]{\gdef\@farbe{#1}} \newcommand*{\@farbe}{litgruen}
-\newcommand*{\lesejahr}[1]{\gdef\@lesejahr{#1}} \newcommand*{\@lesejahr}{}
-\newcommand*{\pfarramt}[1]{\gdef\@pfarramt{#1}} \newcommand*{\@pfarramt}{Pfarramt}
-\newcommand*{\musik}[1]{\gdef\@musik{#1}} \newcommand*{\@musik}{}
-\newcommand*{\mesnerin}[1]{\gdef\@mesnerin{#1}} \newcommand*{\@mesnerin}{}
-\newcommand*{\priest}[1]{\gdef\@priest{#1}} \newcommand*{\@priest}{}
-\newcommand*{\diakon}[1]{\gdef\@diakon{#1}} \newcommand*{\@diakon}{}
-\newcommand*{\lektorGruss}[1]{\gdef\@lektorGruss{#1}} \newcommand*{\@lektorGruss}{}
-\newcommand*{\lektorLesung}[1]{\gdef\@lektorLesung{#1}} \newcommand*{\@lektorLesung}{}
-\newcommand*{\prediger}[1]{\gdef\@prediger{#1}} \newcommand*{\@prediger}{}
-\newcommand*{\litgesang}[1]{\gdef\@litgesang{#1}} \newcommand*{\@litgesang}{}
-\newcommand*{\gesang}[1]{\gdef\@gesang{#1}} \newcommand*{\@gesang}{}
-\newcommand*{\abendmahlshelferA}[1]{\gdef\@abendmahlshelferA{#1}} \newcommand*{\@abendmahlshelferA}{}
-\newcommand*{\abendmahlshelferB}[1]{\gdef\@abendmahlshelferB{#1}} \newcommand*{\@abendmahlshelferB}{}
-\newcommand*{\abendmahlshelferC}[1]{\gdef\@abendmahlshelferC{#1}} \newcommand*{\@abendmahlshelferC}{}
-\newcommand*{\fuerb}[1]{\gdef\@fuerb{#1}} \newcommand*{\@fuerb}{}
-
-\newcommand*{\predigttext}[1]{\gdef\@predigttext{#1}} \newcommand*{\@predigttext}{}
-\newcommand*{\predigtlied}[1]{\gdef\@predigtlied{#1}} \newcommand*{\@predigtlied}{}
-\newcommand*{\anmerkungen}[1]{\gdef\@anmerkungen{#1}} \newcommand*{\@anmerkungen}{}
-\newcommand*{\Wochenspruch}{\footnotesize{Wochenspruch aus \@wochenspruchStelle:}\\ \normalsize\textit{\glqq\@wochenspruch\grqq}}
 
 \setcounter{tocdepth}{2}
 
