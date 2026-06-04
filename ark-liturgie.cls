@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/06/03 v0.35 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/06/04 v0.36 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -18,6 +18,15 @@
 
 \newif\if@beichte\@beichtefalse
 \DeclareOption{beichte}{\@beichtetrue}
+
+\newif\if@liedertafel\@liedertafelfalse
+\DeclareOption{liedertafel}{\@liedertafeltrue}
+
+\newif\if@auszuglektor\@auszuglektorfalse
+\DeclareOption{auszuglektor}{\@auszuglektortrue}
+
+\newif\if@verteiler\@verteilerfalse
+\DeclareOption{verteiler}{\@verteilertrue}
 
 \newif\if@liturgiemitbegruendung\@liturgiemitbegruendungfalse
 \DeclareOption{begruendung}{\@liturgiemitbegruendungtrue}
@@ -191,30 +200,34 @@
     \begin{multicols}{2}
     \tableofcontents\thispagestyle{empty}
     \end{multicols}
+
+    \if@liedertafel
+        \vfill
+        
+        {\noindent\large\bfseries\color{\@farbe!80} Liedertafel}
+        \begin{multicols}{3}
+            \ifthenelse{\equal{\lieder}{}}{\textit{Keine. Oder?}}{
+                \begin{enumerate}
+                    \let\do\item
+                    \dolistloop\lieder
+                \end{enumerate}
+            }
+        \end{multicols}
+    \fi
     
-    \vfill
-    
-    {\noindent\large\bfseries\color{\@farbe!80} Liedertafel}
-    \begin{multicols}{3}
-        \ifthenelse{\equal{\lieder}{}}{\textit{Keine. Oder?}}{
-            \begin{enumerate}
-                \let\do\item
-                \dolistloop\lieder
-            \end{enumerate}
-        }
-    \end{multicols}
-    
-    \vfill
-    
-    {\noindent\large\bfseries\color{\@farbe!80} Auszug: \normalfont\ \textit{Texte} für liturgische:n Lektor:in (Lesung)}
-    \begin{multicols}{4}
-        \ifthenelse{\equal{\texte}{}}{\textit{Keine. Oder?}}{
-            \begin{enumerate}
-                \let\do\item
-                \dolistloop\texte
-            \end{enumerate}
-        }
-    \end{multicols}
+    \if@auszuglektor
+        \vfill
+        
+        {\noindent\large\bfseries\color{\@farbe!80} Auszug: \normalfont\ \textit{Texte} für liturgische:n Lektor:in (Lesung)}
+        \begin{multicols}{4}
+            \ifthenelse{\equal{\texte}{}}{\textit{Keine. Oder?}}{
+                \begin{enumerate}
+                    \let\do\item
+                    \dolistloop\texte
+                \end{enumerate}
+            }
+        \end{multicols}
+    \fi
     
     \vfill
     
@@ -223,29 +236,31 @@
         %\begin{multicols}{2}
         \noindent\@anmerkungen
         %\end{multicols}
-        
+    }
+
+    \if@verteiler
         \vfill
-    }
-    
-    {\noindent\large\bfseries\color{\@farbe!80} Mitwirkende/Verteiler \normalfont\ifthenelse{\equal{\@pfarramt}{}}{}{über \@pfarramt}}
-    \begin{multicols}{3}
-    \Verteiler{
-        \ifthenelse{\equal{\@mesnerin}{}}{}{\item \textit{Mesner:in} \@mesnerin}
-        \ifthenelse{\equal{\@lektorGruss}{}}{}{\item \textit{LBegr.} \@lektorGruss}
-        \ifthenelse{\equal{\@lektorLesung}{}}{}{\item \textit{Lekt.} \@lektorLesung}
-        \ifthenelse{\equal{\@abendmahlshelferA}{}}{}{\item \textit{Abm.} \@abendmahlshelferA}
-        \ifthenelse{\equal{\@abendmahlshelferB}{}}{}{\item \textit{Abm.} \@abendmahlshelferB}
-        \ifthenelse{\equal{\@abendmahlshelferC}{}}{}{\item \textit{Abm.} \@abendmahlshelferC}
-        \ifthenelse{\equal{\@diakon}{}}{}{\item \@diakon}
-        \ifthenelse{\equal{\@fuerb}{}}{}{\item \textit{Fürb.} \@fuerb}
-        \ifthenelse{\equal{\@musik}{}}{}{\item \textit{Mus.} \@musik}
-        \ifthenelse{\equal{\@gesang}{}}{}{\item \textit{Ges.} \@gesang}
-        \ifthenelse{\equal{\@litgesang}{}}{}{\item \textit{Lit. Ges.} \@litgesang}
-        \ifthenelse{\equal{\@priest}{}}{}{\item \textit{Lit.} \@priest}
-        \ifthenelse{\equal{\@prediger}{}}{}{\ifthenelse{\equal{\@prediger}{\@priest}}{}{\item \textit{Pr.} \@prediger}}
-    }
-    \end{multicols}
-    
+        
+        {\noindent\large\bfseries\color{\@farbe!80} Mitwirkende/Verteiler \normalfont\ifthenelse{\equal{\@pfarramt}{}}{}{über \@pfarramt}}
+        \begin{multicols}{3}
+        \Verteiler{
+            \ifthenelse{\equal{\@mesnerin}{}}{}{\item \textit{Mesner:in} \@mesnerin}
+            \ifthenelse{\equal{\@lektorGruss}{}}{}{\item \textit{LBegr.} \@lektorGruss}
+            \ifthenelse{\equal{\@lektorLesung}{}}{}{\item \textit{Lekt.} \@lektorLesung}
+            \ifthenelse{\equal{\@abendmahlshelferA}{}}{}{\item \textit{Abm.} \@abendmahlshelferA}
+            \ifthenelse{\equal{\@abendmahlshelferB}{}}{}{\item \textit{Abm.} \@abendmahlshelferB}
+            \ifthenelse{\equal{\@abendmahlshelferC}{}}{}{\item \textit{Abm.} \@abendmahlshelferC}
+            \ifthenelse{\equal{\@diakon}{}}{}{\item \@diakon}
+            \ifthenelse{\equal{\@fuerb}{}}{}{\item \textit{Fürb.} \@fuerb}
+            \ifthenelse{\equal{\@musik}{}}{}{\item \textit{Mus.} \@musik}
+            \ifthenelse{\equal{\@gesang}{}}{}{\item \textit{Ges.} \@gesang}
+            \ifthenelse{\equal{\@litgesang}{}}{}{\item \textit{Lit. Ges.} \@litgesang}
+            \ifthenelse{\equal{\@priest}{}}{}{\item \textit{Lit.} \@priest}
+            \ifthenelse{\equal{\@prediger}{}}{}{\ifthenelse{\equal{\@prediger}{\@priest}}{}{\item \textit{Pr.} \@prediger}}
+        }
+        \end{multicols}
+    \fi
+
     \vfill
     
     \noindent\textit{\@autor}\hfill\textit{Tel. \@autorTelefon}\hfill\textit{E-Mail: \@autorEMail}
