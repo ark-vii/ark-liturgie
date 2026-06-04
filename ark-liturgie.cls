@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/06/04 v0.36.1 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/06/04 v0.36.2 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -202,7 +202,7 @@
     \end{multicols}
 
     \if@liedertafel
-        \vfill
+        \par
         
         {\noindent\large\bfseries\color{\@farbe!80} Liedertafel}
         \begin{multicols}{3}
@@ -216,7 +216,7 @@
     \fi
     
     \if@auszuglektor
-        \vfill
+        \par
         
         {\noindent\large\bfseries\color{\@farbe!80} Auszug: \normalfont\ \textit{Texte} für liturgische:n Lektor:in (Lesung)}
         \begin{multicols}{4}
@@ -229,7 +229,7 @@
         \end{multicols}
     \fi
     
-    \vfill
+    \par
     
     \ifthenelse{\equal{\@anmerkungen}{}}{}{
         {\noindent\large\bfseries\color{\@farbe!80} Anmerkungen}\par
@@ -239,7 +239,7 @@
     }
 
     \if@verteiler
-        \vfill
+        \par
         
         {\noindent\large\bfseries\color{\@farbe!80} Mitwirkende/Verteiler \normalfont\ifthenelse{\equal{\@pfarramt}{}}{}{über \@pfarramt}}
         \begin{multicols}{3}
