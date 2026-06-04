@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/06/04 v0.37 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/06/04 v0.38 ARK-Liturgie]
 
 \newif\if@liturgiemitpredigt\@liturgiemitpredigtfalse
 \DeclareOption{predigt}{\@liturgiemitpredigttrue}
@@ -194,27 +194,43 @@
     \colorlet{Wichtig}{white} % grün
 }
 
-\if@liedertafel
+\newcounter{registerzahl}
+\setcounter{registerzahl}{0}
+
+\if@abendmahl
     \usepackage[toc]{multitoc}
     \renewcommand*{\multicolumntoc}{2}
 \fi
-\if@auszuglektor
-    \usepackage[toc]{multitoc}
-    \renewcommand*{\multicolumntoc}{2}
-\fi
+
 \if@verteiler
+\addtocounter{registerzahl}{1}
+\fi
+
+\if@liedertafel
+\addtocounter{registerzahl}{1}
+\fi
+
+\if@auszuglektor
+\addtocounter{registerzahl}{1}
+\fi
+
+\ifthenelse{\equal{\@anmerkungen}{}}{}{%
+    \addtocounter{registeranzahl}{1}%
+}
+
+\ifnum\the\value{registerzahl}>2
     \usepackage[toc]{multitoc}
     \renewcommand*{\multicolumntoc}{2}
 \fi
 
 \def\Ablauf{\newpage
-    {\noindent\bfseries\Large\@art: \@ltitel\\\noindent\large\@feiertag\ am \@gdatum, \@ort\par\noindent\large\bfseries\color{\@farbe!80} Liturgischer Ablauf {\normalsize(\textbf{Stand:} \today)}}
+    {\noindent\bfseries\Large\@art: \@ltitel\\\noindent\large\@feiertag\ am \@gdatum, \@ort\par\noindent\large\bfseries\color{\@farbe!80} Liturgischer Ablauf {\normalsize(\textbf{Stand:} \today)}\vspace{-\baselineskip}}
     \Border{\@farbe}{white}{0.5cm}
-    \tableofcontents\thispagestyle{empty}
+    \tableofcontents
+    \thispagestyle{empty}
+    \enlargethispage{3\baselineskip}
 
-    \if@liedertafel
-        \par
-        
+    \if@liedertafel        
         {\noindent\large\bfseries\color{\@farbe!80} Liedertafel}
         \begin{multicols}{3}
             \ifthenelse{\equal{\lieder}{}}{\textit{Keine. Oder?}}{
@@ -227,10 +243,8 @@
     \fi
     
     \if@auszuglektor
-        \par
-        
-        {\noindent\large\bfseries\color{\@farbe!80} Auszug: \normalfont\ \textit{Texte} für liturgische:n Lektor:in (Lesung)}
-        \begin{multicols}{4}
+        {\noindent\large\bfseries\color{\@farbe!80} Lesungen}
+        \begin{multicols}{3}
             \ifthenelse{\equal{\texte}{}}{\textit{Keine. Oder?}}{
                 \begin{enumerate}
                     \let\do\item
@@ -240,8 +254,6 @@
         \end{multicols}
     \fi
     
-    \par
-    
     \ifthenelse{\equal{\@anmerkungen}{}}{}{
         {\noindent\large\bfseries\color{\@farbe!80} Anmerkungen}\par
         %\begin{multicols}{2}
@@ -250,8 +262,6 @@
     }
 
     \if@verteiler
-        \par
-        
         {\noindent\large\bfseries\color{\@farbe!80} Mitwirkende/Verteiler \normalfont\ifthenelse{\equal{\@pfarramt}{}}{}{über \@pfarramt}}
         \begin{multicols}{3}
         \Verteiler{
@@ -272,10 +282,8 @@
         \end{multicols}
     \fi
 
-    \vfill
-    
-    \noindent\textit{\@autor}\hfill\textit{Tel. \@autorTelefon}\hfill\textit{E-Mail: \@autorEMail}
-    \label{ablauf}
+    \vfill    
+    {\noindent\textit{\@autor}\hfill\textit{Tel. \@autorTelefon}\hfill\textit{E-Mail: \@autorEMail}\label{ablauf}}
 }
 
 \let\deckblatt\maketitle
