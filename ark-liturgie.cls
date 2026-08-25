@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/06/04 v0.38.2 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/08/26 v0.39 ARK-Liturgie]
 
 \newif\if@predigt\@predigtfalse
 \DeclareOption{predigt}{\@predigttrue}
@@ -348,6 +348,7 @@
 % Umgebungen
 
 \newenvironment{predigt}{ % vorher
+    \if@predigt
     \newpage
     %\KOMAoptions{paper=A5}
     \KOMAoptions{fontsize=14pt}
@@ -361,7 +362,9 @@
     \rubrik{\Opt{Gebet vor der Predigt}}
     \vspace{0.5cm}
     \setstretch{1.5}
+    \fi
 }{ % danach
+    \if@predigt
     \setstretch{1}
     \vspace{0.5cm}
     \par\Kanzelsegen % Kanzelsegen
@@ -374,6 +377,7 @@
     %\normalsize
     \cleardoublepage
     %\recalctypearea
+    \fi
 }
 
 \newenvironment{rubriku}{ % vorher
@@ -880,7 +884,7 @@ Amen.
 
 \newcommand\Predigt[1]{
     \stk{Predigt über \@predigttext}{}
-    \if@predigt\subfile{#1}\newpage\fi
+    \if@predigt\subfile{#1}\newpage\else\ifthenelse{\equal{\@predigtlied}{}}{}{\Predigtlied{\@predigtlied}}\fi
 }
 
 \newcommand\PredigtInline{
