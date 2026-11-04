@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/08/26 v0.39 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/11/04 v0.40 ARK-Liturgie]
 
 \newif\if@predigt\@predigtfalse
 \DeclareOption{predigt}{\@predigttrue}
@@ -345,246 +345,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Umgebungen
-
-\newenvironment{predigt}{ % vorher
-    \if@predigt
-    \newpage
-    %\KOMAoptions{paper=A5}
-    \KOMAoptions{fontsize=14pt}
-    %\recalctypearea
-    \noindent\textit{\@autor}\par\part*{\textcolor{\@farbe!80}\@ltitel}
-    \par\textit{Predigt über \@predigttext\ (\@lesejahr)\\\@gdatum, \@feiertag}\vspace{0.75em}\hrule\hrule\vspace{1.75em}
-    %\newpage
-    \large
-    \Priest{Gnade sei mit \mbox{euch /} und Friede von Gott, unserm \mbox{Vater, /} und dem Herrn Jesus Christus.}\hfill \Korr{Amen.} % Kanzelgruß
-    \par
-    \rubrik{\Opt{Gebet vor der Predigt}}
-    \vspace{0.5cm}
-    \setstretch{1.5}
-    \fi
-}{ % danach
-    \if@predigt
-    \setstretch{1}
-    \vspace{0.5cm}
-    \par\Kanzelsegen % Kanzelsegen
-    \par\rubrik{\Opt{Gebet nach der Predigt}}
-    %\begin{center}Amen.\end{center}
-    %\KOMAoptions{paper=A4}
-    \normalsize
-    \ifthenelse{\equal{\@predigtlied}{}}{}{\Predigtlied{\@predigtlied}}
-    \KOMAoptions{fontsize=10pt}
-    %\normalsize
-    \cleardoublepage
-    %\recalctypearea
-    \fi
-}
-
-\newenvironment{rubriku}{ % vorher
-    \vspace{0.2cm}
-    \begin{center}
-    \footnotesize
-    \color{\@farbe!80}
-}{ % danach
-    \end{center}
-}
-
-\newenvironment{begruendungu}{ % vorher
-    \if@begruendung
-    \vspace{0.2cm}
-    \footnotesize
-    \itshape
-    \color{OliveGreen}
-    \begin{addmargin}[2cm]{2cm}
-}{ % danach
-    \end{addmargin}
-    \fi
-}
-
-\newenvironment{predigttextu}{ % vorher
-    \Needspace{10\baselineskip}
-    \subsubsection*{Lesung des Predigttextes: \@predigttext}
-    \setlength{\columnsep}{0.05\textwidth}
-    \begin{multicols}{2}
-    %\begin{displayquote}
-    %\LARGE
-}{ % danach
-    \par\null\hfill \mbox{\normalsize \@predigttext}
-    %\end{displayquote}
-    \end{multicols}
-}
-
-\newenvironment{Kollekteu}{ % vorher
-    \Needspace{7\baselineskip}
-    \Kollekte
-    \begin{displayquote}
-    \Large
-}{ % danach
-    \end{displayquote}
-}
-
-\newenvironment{Begruessungu}{ % vorher
-    \Needspace{7\baselineskip}
-    \Begruessung
-    \begin{displayquote}
-    \Large
-}{ % danach
-    \end{displayquote}
-}
-
-\newenvironment{AKGu}[2][]{ % vorher
-    \Needspace{7\baselineskip}
-    \AKG{#2}
-    \begin{multicols}{2}[#1]
-    %\begin{displayquote}
-    \large
-}{ % danach
-    %\end{displayquote}
-    \end{multicols}
-}
-
-\newenvironment{Dankgebetu}[1]{ % vorher
-    \Needspace{7\baselineskip}
-    \Dankgebet{#1}
-    %\begin{displayquote}
-    \large
-}{ % danach
-    %\end{displayquote}
-}
-
-\newenvironment{DankgebetFBu}[1]{ % vorher
-    \Needspace{7\baselineskip}
-    \DankgebetFB{#1}
-    \begin{multicols}{2}
-    %\begin{displayquote}
-    \large
-}{ % danach
-    %\end{displayquote}
-    \end{multicols}
-}
-
-\newenvironment{Gebetu}[1]{ % vorher
-    \Needspace{7\baselineskip}
-    \stk{#1}{}
-    \begin{multicols}{2}
-    %\begin{displayquote}
-    \large
-}{ % danach
-    %\end{displayquote}
-    \end{multicols}
-}
-
-\newenvironment{GebetPu}[1]{ % vorher
-    \Needspace{7\baselineskip}
-    \paragraph{#1}
-    \begin{multicols}{2}
-    %\begin{displayquote}
-    \large
-}{ % danach
-    %\end{displayquote}
-    \end{multicols}
-}
-
-\newenvironment{AKGmitLiedu}{ % vorher
-    \Needspace{7\baselineskip}
-    \AKGmitLied
-    \begin{multicols}{2}
-    %\begin{displayquote}
-    \large
-}
-{ % danach
-    %\end{displayquote}
-    \end{multicols}
-}
-
-\newenvironment{EpistelU}[1]{ % vorher
-    \newpage
-    \def\EpistelU@ref{#1}
-    \Needspace{7\baselineskip}
-    \Epistel{#1}
-    %
-    \setlength{\columnsep}{0.05\textwidth}
-    \begin{multicols}{2}
-    %\begin{displayquote}
-    \LARGE
-}{ % danach
-    %\hfill {\normalsize \@predigttext}
-    %\end{displayquote}
-    \par\null\hfill \mbox{\normalsize \EpistelU@ref}
-    \end{multicols}
-    %\Needspace{7\baselineskip}
-    \newpage
-}
-
-\newenvironment{ATU}[1]{ % vorher
-    \newpage
-    \def\ATU@ref{#1}
-    \Needspace{7\baselineskip}
-    \AltesTestament{#1}
-    %
-    \setlength{\columnsep}{0.05\textwidth}
-    \begin{multicols}{2}
-    %\begin{displayquote}
-    \LARGE
-}{ % danach
-    %\hfill {\normalsize \@predigttext}
-    %\end{displayquote}
-    \par\null\hfill \mbox{\normalsize \ATU@ref}
-    \end{multicols}
-    \newpage
-}
-
-\newenvironment{EvangeliumU}[1]{ % vorher
-    \newpage
-    \def\EvangeliumU@ref{#1}
-    \Needspace{7\baselineskip}
-    \Evangelium{#1}
-    %
-    \setlength{\columnsep}{0.05\textwidth}
-    \begin{multicols}{2}
-    %\begin{displayquote}
-    \LARGE
-}{ % danach
-    %\hfill {\normalsize \@predigttext}
-    %\end{displayquote}
-    \par\null\hfill \mbox{\normalsize \EvangeliumU@ref}
-    \end{multicols}
-    \newpage
-}
-
-\newenvironment{LesungU}[1]{ % vorher
-    \newpage
-    \def\LesungU@ref{#1}
-    \Needspace{7\baselineskip}
-    \Lesung{#1}
-    %
-    \setlength{\columnsep}{0.05\textwidth}
-    \begin{multicols}{2}
-    %\begin{displayquote}
-    \LARGE
-}{ % danach
-    %\hfill {\normalsize \@predigttext}
-    %\end{displayquote}
-    \par\null\hfill \mbox{\normalsize \LesungU@ref}
-    \end{multicols}
-    \newpage
-}
-
-\newenvironment{predigtschlussgebet}{ % vorher
-    \Needspace{5\baselineskip}
-    \subsubsection*{Predigtschlußgebet}
-    %\begin{displayquote}
-    \LARGE
-    \Priest{}
-}{ % danach
-    \Korr{Amen.}
-    %\end{displayquote}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \def\Kanzelsegen{\Priest{Und der Friede \mbox{Gottes, /} welcher höher ist als alle \mbox{Vernunft, /} bewahre unsere Herzen und Sinne in Christus Jesus.}\hfill\Korr{Amen.}}
 
 % Abschnitte
@@ -925,6 +685,254 @@ Amen.
 }
 
 \newcommand\opT[3]{\textcolor{\@farbe!80}{{[}}\,#1\,\textcolor{\@farbe!80}{{|}}\,#2\,\textcolor{\@farbe!80}{{|}}\,#3\,\textcolor{\@farbe!80}{{]}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Umgebungen
+
+\RequirePackage{comment}
+\RequirePackage{etoolbox}
+\if@predigt
+    \newenvironment{predigt}{ % vorher
+        \newpage
+        %\KOMAoptions{paper=A5}
+        \KOMAoptions{fontsize=14pt}
+        %\recalctypearea
+        \noindent\textit{\@autor}\par\part*{\textcolor{\@farbe!80}\@ltitel}
+        \par\textit{Predigt über \@predigttext\ (\@lesejahr)\\\@gdatum, \@feiertag}\vspace{0.75em}\hrule\hrule\vspace{1.75em}
+        %\newpage
+        \large
+        \Priest{Gnade sei mit \mbox{euch /} und Friede von Gott, unserm \mbox{Vater, /} und dem Herrn Jesus Christus.}\hfill \Korr{Amen.} % Kanzelgruß
+        \par
+        \rubrik{\Opt{Gebet vor der Predigt}}
+        \vspace{0.5cm}
+        \setstretch{1.5}
+    }{ % danach
+        \setstretch{1}
+        \vspace{0.5cm}
+        \par\Kanzelsegen % Kanzelsegen
+        \par\rubrik{\Opt{Gebet nach der Predigt}}
+        %\begin{center}Amen.\end{center}
+        %\KOMAoptions{paper=A4}
+        \normalsize
+        \ifthenelse{\equal{\@predigtlied}{}}{}{\Predigtlied{\@predigtlied}}
+        \KOMAoptions{fontsize=10pt}
+        %\normalsize
+        \cleardoublepage
+        %\recalctypearea
+    }
+\else
+    \excludecomment{predigt}
+    \AtEndEnvironment{predigt}{
+        \subsection*{Predigt über: \@predigttext}
+        \ifthenelse{\equal{\@predigtlied}{}}{}{
+            \Predigtlied{\@predigtlied}
+        }
+    }
+\fi
+
+\newenvironment{rubriku}{ % vorher
+    \vspace{0.2cm}
+    \begin{center}
+    \footnotesize
+    \color{\@farbe!80}
+}{ % danach
+    \end{center}
+}
+
+\newenvironment{begruendungu}{ % vorher
+    \if@begruendung
+    \vspace{0.2cm}
+    \footnotesize
+    \itshape
+    \color{OliveGreen}
+    \begin{addmargin}[2cm]{2cm}
+}{ % danach
+    \end{addmargin}
+    \fi
+}
+
+\newenvironment{predigttextu}{ % vorher
+    \Needspace{10\baselineskip}
+    \subsubsection*{Lesung des Predigttextes: \@predigttext}
+    \setlength{\columnsep}{0.05\textwidth}
+    \begin{multicols}{2}
+    %\begin{displayquote}
+    %\LARGE
+}{ % danach
+    \par\null\hfill \mbox{\normalsize \@predigttext}
+    %\end{displayquote}
+    \end{multicols}
+}
+
+\newenvironment{Kollekteu}{ % vorher
+    \Needspace{7\baselineskip}
+    \Kollekte
+    \begin{displayquote}
+    \Large
+}{ % danach
+    \end{displayquote}
+}
+
+\newenvironment{Begruessungu}{ % vorher
+    \Needspace{7\baselineskip}
+    \Begruessung
+    \begin{displayquote}
+    \Large
+}{ % danach
+    \end{displayquote}
+}
+
+\newenvironment{AKGu}[2][]{ % vorher
+    \Needspace{7\baselineskip}
+    \AKG{#2}
+    \begin{multicols}{2}[#1]
+    %\begin{displayquote}
+    \large
+}{ % danach
+    %\end{displayquote}
+    \end{multicols}
+}
+
+\newenvironment{Dankgebetu}[1]{ % vorher
+    \Needspace{7\baselineskip}
+    \Dankgebet{#1}
+    %\begin{displayquote}
+    \large
+}{ % danach
+    %\end{displayquote}
+}
+
+\newenvironment{DankgebetFBu}[1]{ % vorher
+    \Needspace{7\baselineskip}
+    \DankgebetFB{#1}
+    \begin{multicols}{2}
+    %\begin{displayquote}
+    \large
+}{ % danach
+    %\end{displayquote}
+    \end{multicols}
+}
+
+\newenvironment{Gebetu}[1]{ % vorher
+    \Needspace{7\baselineskip}
+    \stk{#1}{}
+    \begin{multicols}{2}
+    %\begin{displayquote}
+    \large
+}{ % danach
+    %\end{displayquote}
+    \end{multicols}
+}
+
+\newenvironment{GebetPu}[1]{ % vorher
+    \Needspace{7\baselineskip}
+    \paragraph{#1}
+    \begin{multicols}{2}
+    %\begin{displayquote}
+    \large
+}{ % danach
+    %\end{displayquote}
+    \end{multicols}
+}
+
+\newenvironment{AKGmitLiedu}{ % vorher
+    \Needspace{7\baselineskip}
+    \AKGmitLied
+    \begin{multicols}{2}
+    %\begin{displayquote}
+    \large
+}
+{ % danach
+    %\end{displayquote}
+    \end{multicols}
+}
+
+\newenvironment{EpistelU}[1]{ % vorher
+    \newpage
+    \def\EpistelU@ref{#1}
+    \Needspace{7\baselineskip}
+    \Epistel{#1}
+    %
+    \setlength{\columnsep}{0.05\textwidth}
+    \begin{multicols}{2}
+    %\begin{displayquote}
+    \LARGE
+}{ % danach
+    %\hfill {\normalsize \@predigttext}
+    %\end{displayquote}
+    \par\null\hfill \mbox{\normalsize \EpistelU@ref}
+    \end{multicols}
+    %\Needspace{7\baselineskip}
+    \newpage
+}
+
+\newenvironment{ATU}[1]{ % vorher
+    \newpage
+    \def\ATU@ref{#1}
+    \Needspace{7\baselineskip}
+    \AltesTestament{#1}
+    %
+    \setlength{\columnsep}{0.05\textwidth}
+    \begin{multicols}{2}
+    %\begin{displayquote}
+    \LARGE
+}{ % danach
+    %\hfill {\normalsize \@predigttext}
+    %\end{displayquote}
+    \par\null\hfill \mbox{\normalsize \ATU@ref}
+    \end{multicols}
+    \newpage
+}
+
+\newenvironment{EvangeliumU}[1]{ % vorher
+    \newpage
+    \def\EvangeliumU@ref{#1}
+    \Needspace{7\baselineskip}
+    \Evangelium{#1}
+    %
+    \setlength{\columnsep}{0.05\textwidth}
+    \begin{multicols}{2}
+    %\begin{displayquote}
+    \LARGE
+}{ % danach
+    %\hfill {\normalsize \@predigttext}
+    %\end{displayquote}
+    \par\null\hfill \mbox{\normalsize \EvangeliumU@ref}
+    \end{multicols}
+    \newpage
+}
+
+\newenvironment{LesungU}[1]{ % vorher
+    \newpage
+    \def\LesungU@ref{#1}
+    \Needspace{7\baselineskip}
+    \Lesung{#1}
+    %
+    \setlength{\columnsep}{0.05\textwidth}
+    \begin{multicols}{2}
+    %\begin{displayquote}
+    \LARGE
+}{ % danach
+    %\hfill {\normalsize \@predigttext}
+    %\end{displayquote}
+    \par\null\hfill \mbox{\normalsize \LesungU@ref}
+    \end{multicols}
+    \newpage
+}
+
+\newenvironment{predigtschlussgebet}{ % vorher
+    \Needspace{5\baselineskip}
+    \subsubsection*{Predigtschlußgebet}
+    %\begin{displayquote}
+    \LARGE
+    \Priest{}
+}{ % danach
+    \Korr{Amen.}
+    %\end{displayquote}
+}
 
 \setcounter{tocdepth}{2}
 
