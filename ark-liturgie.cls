@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/11/04 v0.40.1 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/11/04 v0.41 ARK-Liturgie]
 
 \newif\if@predigt\@predigtfalse
 \DeclareOption{predigt}{\@predigttrue}
@@ -440,6 +440,8 @@
 \newcommand\Auszug{\stk{Auszug}{}}
 
 \newcommand\Confiteor{\stk{Confiteor}{}}
+\newcommand\Schuldbekenntnis{\stk{Schuldbekenntnis}{}}
+\newcommand\Gnadenzusage{\stk{Gnadenzusage}{}}
 \newcommand\SConfiteor{\stk{Salutatio, Confiteor}{}}
 \newcommand\AKG[1]{\stk{Fürbitten}{#1}}
 \newcommand\AKGmitLied[2]{\stk{Fürbitten}{(#1) mit #2}\zulieder{\textit{Füb.} #2}}
