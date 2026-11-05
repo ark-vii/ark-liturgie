@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/11/04 v0.42 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/11/05 v0.43 ARK-Liturgie]
 
 \newif\if@predigt\@predigtfalse
 \DeclareOption{predigt}{\@predigttrue}
@@ -701,6 +701,7 @@ Amen.
         \KOMAoptions{fontsize=14pt}
         %\recalctypearea
         \noindent\textit{\@autor}\par\part*{\textcolor{\@farbe!80}\@ltitel}
+        \addcontentsline{toc}{subsection}{Predigt über \@predigttext}
         \par\textit{Predigt über \@predigttext\ (\@lesejahr)\\\@gdatum, \@feiertag}\vspace{0.75em}\hrule\hrule\vspace{1.75em}
         %\newpage
         \large
@@ -726,7 +727,7 @@ Amen.
 \else
     \excludecomment{predigt}
     \AtEndEnvironment{predigt}{
-        \subsection*{Predigt über: \@predigttext}
+        \stk{Predigt über: \@predigttext}{}
         \ifthenelse{\equal{\@predigtlied}{}}{}{
             \Predigtlied{\@predigtlied}
         }
