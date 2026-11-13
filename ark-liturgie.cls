@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/11/13 v0.44.1 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/11/13 v0.45 ARK-Liturgie]
 
 \newif\if@predigt\@predigtfalse
 \DeclareOption{predigt}{\@predigttrue}
@@ -396,6 +396,7 @@
 \newcommand\Votum{\stk{Trinitarisches Votum}{}}
 \newcommand\Begruessung{\Ansprache{Begrüßung}\begin{displayquote}\Large\Wochenspruch\end{displayquote}}
 \newcommand\Salutatio{\stk{Salutatio}{}}
+\newcommand\VotumSalutatio\stk{Votum, Salutatio}{}
 \let\Gruss\Salutatio
 
 \newcommand\Eingangslied[1]{\Lied{Eingangslied}{EL}{#1}}
