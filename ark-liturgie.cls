@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ark-liturgie}[2026/11/13 v0.44 ARK-Liturgie]
+\ProvidesClass{ark-liturgie}[2026/11/13 v0.44.1 ARK-Liturgie]
 
 \newif\if@predigt\@predigtfalse
 \DeclareOption{predigt}{\@predigttrue}
@@ -390,7 +390,7 @@
 \newcommand\Laeuten{\stk{Läuten}{}}
 \newcommand\SakristeigebetLaeuten{\newcommand\LaeutenPraeludium{\stk{Sakristeigebet, Läuten}{}}}
 \newcommand\Praeludium{\stk{Präludium}{}}
-\newcommand\LaeutenPraeludium{\stk{Präludium, Präludium}{}}
+\newcommand\LaeutenPraeludium{\stk{Läuten, Präludium}{}}
 \newcommand\Beginn{\Sakristeigebet, \LaeutenPraeludium}
 \newcommand\Einzug[1]{\stk{Einzug #1}{}}
 \newcommand\Votum{\stk{Trinitarisches Votum}{}}
